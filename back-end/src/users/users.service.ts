@@ -4,8 +4,8 @@ import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
-import * as bcrypt from 'bcrypt';
-import { LoginUserDto } from "./dto/login-user-dto";
+import * as bCrypt from 'bcrypt-nodejs';
+import { LoginUserDto } from './dto/login-user-dto';
 
 @Injectable()
 export class UsersService {
@@ -21,7 +21,10 @@ export class UsersService {
   async createUser(CreateUserDto: CreateUserDto) {
     try {
       const user = await this.UsersRepository.create(CreateUserDto);
-      user.password = await bcrypt.hash(user.password, 10);
+      user.password = await bCrypt.hashSync(
+        user.password,
+        bCrypt.genSaltSync(10),
+      );
       await this.UsersRepository.save(user);
     } catch (e) {
       return { message: 'User is not created. Error' };
@@ -46,19 +49,27 @@ export class UsersService {
     }
   }
 
+  async getById(id: number): Promise<Users> {
+    try {
+      return await this.UsersRepository.findOne({ id: id });
+    } catch (e) {
+      return;
+    }
+  }
   async authenticateUser(loginDto: LoginUserDto): Promise<any> {
     console.log(loginDto.login);
     const u = await this.findOneByLogin(loginDto.login);
     console.log(u);
     if (u) {
-      const passHash = await bcrypt.hash(loginDto.password, 10);
-
-      if (passHash === u.password) {
-        delete u.password;
+      console.log('am here');
+      console.log(loginDto.password, u.password);
+      if (loginDto.password === u.password) {
+        console.log('here everything ok');
         return u;
       }
     } else {
-      return { message: 'govno tupo' };
+      console.log('whata fuck');
+      return u;
     }
   }
 }
