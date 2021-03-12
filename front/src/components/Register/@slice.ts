@@ -5,10 +5,12 @@ import { fetchData } from '../../utils/API'
 export interface Form {
   login: string;
   password: string;
+  email: string;
 }
 export interface LoginFormState {
   login: string;
   password: string;
+  email: string;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   isAuth: boolean;
 }
@@ -20,29 +22,28 @@ export interface Response {
 const initialState: LoginFormState = {
   login: '',
   password: '',
+  email: '',
   loading: 'idle',
   isAuth: false
 }
 
-export const loginUser = createAsyncThunk(
-  'login/auth',
+export const registerUser = createAsyncThunk(
+  'register',
   async (data: Form, thunkAPI) => {
-    //alert('fuck');
     const postOptions = {
-      body: JSON.stringify({ username: data.login, password: data.password }),
+      body: JSON.stringify({ login: data.login, password: data.password, email: data.email }),
       method: 'POST',
     };
-    const response = await fetchData('/api/login/', postOptions);
+    const response = await fetchData('/api/register/', postOptions);
     let answer = await response.json() as Response;
-    if(answer.message=="success") {
-      changeIsAuth();
-    }
+    //if(answer.message=="success") {
+      //changeIsAuth();
+    //}
     return await (response.json()) as Response;
   })
 
-export const loginFormSlice = createSlice({
-  name: 'login',
-  // `createSlice` will infer the state type from the `initialState` argument
+export const registerFormSlice = createSlice({
+  name: 'register',
   initialState,
   reducers: {
     changeLogin: (state, action:PayloadAction<string>) => {
@@ -51,30 +52,31 @@ export const loginFormSlice = createSlice({
     changePassword: (state, action:PayloadAction<string>) => {
       state.password = action.payload
     },
-    changeIsAuth: (state) => {
-      console.log(state.isAuth);
-      state.isAuth = true;
-      console.log(state.isAuth)
-    }
+    changeEmail: (state, action:PayloadAction<string>) => {
+      state.email = action.payload
+    },
+    //changeIsAuth: (state) => {
+      //state.isAuth = true;
+    //}
   },
   extraReducers: builder => {
-    builder.addCase(loginUser.pending, (state, action) => {
+    builder.addCase(registerUser.pending, (state, action) => {
       state.loading = 'pending'
     });
-    builder.addCase(loginUser.fulfilled, (state, action) => {
+    builder.addCase(registerUser.fulfilled, (state, action) => {
       state.loading = 'succeeded';
       state.password = '';
       state.login = '';
+      state.email = '';
       state.isAuth = true;
-      //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
     });
   }
 })
 
-export const { changeLogin, changePassword, changeIsAuth } = loginFormSlice.actions;
+export const { changeLogin, changePassword, changeEmail } = registerFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;
 //export const selectPassword = (state: RootState) => state.loginForm.password;
 
-export default loginFormSlice.reducer
+export default registerFormSlice.reducer

@@ -30,7 +30,6 @@ const NavBar: React.FC = () => {
             {RoutesNames.REGISTER}
           </Link>
         </nav>
-
       </div>
     </div>
   );

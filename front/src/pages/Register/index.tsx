@@ -1,12 +1,12 @@
 import * as React from 'react';
 import NavBar from "../../components/NavBar";
-import LoginForm from '../../components/Login';
+import RegisterForm from '../../components/Register';
 
-export const Login: React.FC = () => {
+export const Register: React.FC = () => {
   return (
     <div>
       <NavBar/>
-      <LoginForm/>
+      <RegisterForm/>
     </div>
   );
 }
