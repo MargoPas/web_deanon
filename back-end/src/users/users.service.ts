@@ -4,7 +4,7 @@ import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
-import * as bCrypt from 'bcrypt-nodejs';
+import * as bcrypt from 'bcrypt';
 import { LoginUserDto } from './dto/login-user-dto';
 
 @Injectable()
@@ -21,10 +21,7 @@ export class UsersService {
   async createUser(CreateUserDto: CreateUserDto) {
     try {
       const user = await this.UsersRepository.create(CreateUserDto);
-      user.password = await bCrypt.hashSync(
-        user.password,
-        bCrypt.genSaltSync(10),
-      );
+      user.password = await bcrypt.hash(user.password, 10, null);
       await this.UsersRepository.save(user);
     } catch (e) {
       return { message: 'User is not created. Error' };
@@ -63,9 +60,12 @@ export class UsersService {
     if (u) {
       console.log('am here');
       console.log(loginDto.password, u.password);
-      if (loginDto.password === u.password) {
+      console.log(bcrypt.compare(loginDto.password, u.password, null));
+      if (bcrypt.compare(loginDto.password, u.password, null)) {
         console.log('here everything ok');
         return u;
+      } else {
+        return;
       }
     } else {
       console.log('whata fuck');
