@@ -8,6 +8,8 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import TokenPayload from './tokenPayload.interface';
 
+const MESSAGE_BAD = { message: 'User is not created. Error' };
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -27,7 +29,13 @@ export class AuthService {
     registrationDto.password = hashedPassword;
     try {
       const createdUser = await this.usersService.createUser(registrationDto);
-      return createdUser;
+      console.log(createdUser);
+      if (createdUser) {
+        console.log('succeeded');
+        return registrationDto;
+      } else {
+        return false;
+      }
     } catch (error) {
       if (error?.code === PG_UNIQUE_VIOLATION) {
         throw new HttpException(
@@ -73,6 +81,6 @@ export class AuthService {
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
     console.log('end');
-    return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;;
+    return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;
   }
 }

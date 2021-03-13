@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController {
   constructor(private readonly UsersService: UsersService) {}
 
@@ -24,8 +24,11 @@ export class UsersController {
   }
 
   @Put(':id')
-  async updatePassword(@Param('id') id: number, @Body() updateUserPasswordDto: UpdateUserPasswordDto){
-    return await this.UsersService.updatePassword(id, updateUserPasswordDto)
+  async updatePassword(
+    @Param('id') id: number,
+    @Body() updateUserPasswordDto: UpdateUserPasswordDto,
+  ) {
+    return await this.UsersService.updatePassword(id, updateUserPasswordDto);
   }
 }
 export class UserModule {}

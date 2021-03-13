@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06359da8-47f9-4a11-8c22-37a3417d2d06" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/back-end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/back-end/src/auth/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/auth/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/back-end/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/auth/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/auth/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/users/users.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/users/users.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/back-end/src/users/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/back-end/src/users/users.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/components/Login/@slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Login/@slice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/front/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Register/@slice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Register/@slice.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

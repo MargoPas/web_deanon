@@ -65,6 +65,10 @@ export const loginFormSlice = createSlice({
       state.isAuth = true;
       //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
     });
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.loading = 'failed';
+      alert("Something wrong happened during login")
+    });
   }
 })
 

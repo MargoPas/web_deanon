@@ -22,8 +22,25 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  async register(@Body() registrationDto: CreateUserDto) {
-    return this.authService.register(registrationDto);
+  async register(
+    @Body() registrationDto: CreateUserDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    try {
+      const answer = await this.authService.register(registrationDto);
+      console.log(answer, 'answer');
+      if (answer != undefined && answer != false) {
+        const cookie = await this.authService.getCookieWithJwtToken(
+          registrationDto.login,
+        );
+        response.setHeader('Set-Cookie', cookie);
+        return { message: 'success', data: answer };
+      } else {
+        return { message: 'error' };
+      }
+    } catch (e) {
+      return e;
+    }
   }
 
   @HttpCode(200)
@@ -33,21 +50,15 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     const user = await this.authService.validateUser(loginDto);
-    console.log(user, 'aaa');
     if (user != undefined) {
       const login = user.login;
-      console.log(user);
       const cookie = await this.authService.getCookieWithJwtToken(login);
       response.setHeader('Set-Cookie', cookie);
-      console.log('aaa');
-      return {message:"success",
-        data: user};
+      return { message: 'success', data: user };
     } else {
-      console.log('vvv');
-      return { message: 'oh' };
+      return { message: 'error' };
     }
   }
-
 
   @UseGuards(JwtAuthenticationGuard)
   @Get()

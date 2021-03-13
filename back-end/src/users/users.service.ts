@@ -23,8 +23,9 @@ export class UsersService {
       const user = await this.UsersRepository.create(CreateUserDto);
       user.password = await bcrypt.hash(user.password, 10, null);
       await this.UsersRepository.save(user);
+      return true;
     } catch (e) {
-      return { message: 'User is not created. Error' };
+      return false;
     }
   }
   async findOneByName(name: string): Promise<Users> {
@@ -54,22 +55,15 @@ export class UsersService {
     }
   }
   async authenticateUser(loginDto: LoginUserDto): Promise<any> {
-    console.log(loginDto.login);
     const u = await this.findOneByLogin(loginDto.login);
-    console.log(u);
     if (u) {
-      console.log('am here');
-      console.log(loginDto.password, u.password);
-      console.log(bcrypt.compare(loginDto.password, u.password, null));
-      if (bcrypt.compare(loginDto.password, u.password, null)) {
-        console.log('here everything ok');
+      if (await bcrypt.compare(loginDto.password, u.password, null)) {
         return u;
       } else {
         return;
       }
     } else {
-      console.log('whata fuck');
-      return u;
+      return;
     }
   }
 }

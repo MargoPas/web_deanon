@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchData } from '../../utils/API'
+import {loginUser} from "../Login/@slice";
 
 // Define a type for the slice state
 export interface Form {
@@ -17,7 +18,6 @@ export interface LoginFormState {
   isAuth: boolean;
 }
 export interface Response {
-  type: string;
   message: string;
 }
 // Define the initial state using that type
@@ -58,9 +58,6 @@ export const registerFormSlice = createSlice({
     changeName: (state, action:PayloadAction<string>) => {
       state.name = action.payload
     },
-    //changeIsAuth: (state) => {
-      //state.isAuth = true;
-    //}
   },
   extraReducers: builder => {
     builder.addCase(registerUser.pending, (state, action) => {
@@ -71,7 +68,12 @@ export const registerFormSlice = createSlice({
       state.password = '';
       state.login = '';
       state.e_mail = '';
+      state.name = '';
       state.isAuth = true;
+    });
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.loading = 'failed';
+      alert("Something wrong happened during registration")
     });
   }
 })
