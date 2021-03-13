@@ -80,23 +80,16 @@ const config = {
         }
     },
     devServer: {
-        port: 8080,
-        open: true,
-        hot: true,
         historyApiFallback: true,
         proxy: {
             '/api/': {
                 context: () => true,
-                target: 'http://[::1]:8000',
-                secure: false,
-                changeOrigin: true,
-                headers: {
-                    Connection: 'keep-alive',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true,
-                    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-                    'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-id, Content-Length, X-Requested-With',
+                target:{
+                    host:'127.0.0.1',
+                    protocol: 'http',
+                    port: '3000'
                 },
+
             },
         },
     },

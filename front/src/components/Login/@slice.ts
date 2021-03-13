@@ -34,6 +34,7 @@ export const loginUser = createAsyncThunk(
     };
     const response = await fetchData('/api/login/', postOptions);
     let answer = await response.json() as Response;
+    console.log(answer.message)
     if(answer.message=="success") {
       changeIsAuth();
     }

@@ -17,7 +17,7 @@ import RequestWithUser from './requestWithUser.interface';
 import JwtAuthenticationGuard from '../common/guard/jwt.auth.guard';
 import { Response } from 'express';
 
-@Controller('authentication')
+@Controller('api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -40,7 +40,8 @@ export class AuthController {
       const cookie = await this.authService.getCookieWithJwtToken(login);
       response.setHeader('Set-Cookie', cookie);
       console.log('aaa');
-      return user;
+      return {message:"success",
+        data: user};
     } else {
       console.log('vvv');
       return { message: 'oh' };

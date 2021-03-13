@@ -32,6 +32,7 @@
     "class-validator": "^0.13.1",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
     "joi": "^17.4.0",
