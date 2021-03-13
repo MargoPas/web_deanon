@@ -5,12 +5,14 @@ import { fetchData } from '../../utils/API'
 export interface Form {
   login: string;
   password: string;
-  email: string;
+  e_mail: string;
+  name: string;
 }
 export interface LoginFormState {
   login: string;
   password: string;
-  email: string;
+  e_mail: string;
+  name: string;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   isAuth: boolean;
 }
@@ -22,23 +24,21 @@ export interface Response {
 const initialState: LoginFormState = {
   login: '',
   password: '',
-  email: '',
+  e_mail: '',
   loading: 'idle',
-  isAuth: false
+  isAuth: false,
+  name: ''
 }
 
 export const registerUser = createAsyncThunk(
   'register',
   async (data: Form, thunkAPI) => {
     const postOptions = {
-      body: JSON.stringify({ login: data.login, password: data.password, email: data.email }),
+      body: JSON.stringify({ login: data.login, password: data.password, e_mail: data.e_mail, name: data.name }),
       method: 'POST',
     };
     const response = await fetchData('/api/register/', postOptions);
-    let answer = await response.json() as Response;
-    //if(answer.message=="success") {
-      //changeIsAuth();
-    //}
+
     return await (response.json()) as Response;
   })
 
@@ -53,7 +53,10 @@ export const registerFormSlice = createSlice({
       state.password = action.payload
     },
     changeEmail: (state, action:PayloadAction<string>) => {
-      state.email = action.payload
+      state.e_mail = action.payload
+    },
+    changeName: (state, action:PayloadAction<string>) => {
+      state.name = action.payload
     },
     //changeIsAuth: (state) => {
       //state.isAuth = true;
@@ -67,13 +70,13 @@ export const registerFormSlice = createSlice({
       state.loading = 'succeeded';
       state.password = '';
       state.login = '';
-      state.email = '';
+      state.e_mail = '';
       state.isAuth = true;
     });
   }
 })
 
-export const { changeLogin, changePassword, changeEmail } = registerFormSlice.actions;
+export const { changeLogin, changePassword, changeEmail, changeName } = registerFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;

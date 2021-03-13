@@ -13,7 +13,7 @@ export interface LoginFormState {
   isAuth: boolean;
 }
 export interface Response {
-  type: string;
+  //type: string;
   message: string;
 }
 // Define the initial state using that type
@@ -33,11 +33,7 @@ export const loginUser = createAsyncThunk(
       method: 'POST',
     };
     const response = await fetchData('/api/login/', postOptions);
-    let answer = await response.json() as Response;
-    console.log(answer.message)
-    if(answer.message=="success") {
-      changeIsAuth();
-    }
+
     return await (response.json()) as Response;
   })
 
