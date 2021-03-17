@@ -6,7 +6,8 @@ import {
   Post,
   Req,
   Request,
-  Res, UnauthorizedException,
+  Res,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -26,20 +27,16 @@ export class AuthController {
     @Body() registrationDto: CreateUserDto,
     @Res({ passthrough: true }) response: Response,
   ) {
-    try {
-      const answer = await this.authService.register(registrationDto);
-      console.log(answer, 'answer');
-      if (answer != undefined && answer != false) {
-        const cookie = await this.authService.getCookieWithJwtToken(
-          registrationDto.login,
-        );
-        response.setHeader('Set-Cookie', cookie);
-        return { message: 'success', data: answer };
-      } else {
-        throw new UnauthorizedException();
-      }
-    } catch (e) {
-      return e;
+    const answer = await this.authService.register(registrationDto);
+    console.log(answer, 'answer');
+    if (answer != undefined && answer != false) {
+      const cookie = await this.authService.getCookieWithJwtToken(
+        registrationDto.login,
+      );
+      response.setHeader('Set-Cookie', cookie);
+      return { message: 'success', data: answer };
+    } else {
+      throw new UnauthorizedException();
     }
   }
 

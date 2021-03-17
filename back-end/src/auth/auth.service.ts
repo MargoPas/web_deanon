@@ -37,16 +37,7 @@ export class AuthService {
         return false;
       }
     } catch (error) {
-      if (error?.code === PG_UNIQUE_VIOLATION) {
-        throw new HttpException(
-          'User with that login already exists',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
-      throw new HttpException(
-        'Something went wrong',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      console.log(error);
     }
   }
 
