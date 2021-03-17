@@ -6,7 +6,7 @@ import {
   Post,
   Req,
   Request,
-  Res,
+  Res, UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -36,7 +36,7 @@ export class AuthController {
         response.setHeader('Set-Cookie', cookie);
         return { message: 'success', data: answer };
       } else {
-        return { message: 'error' };
+        throw new UnauthorizedException();
       }
     } catch (e) {
       return e;
@@ -56,7 +56,7 @@ export class AuthController {
       response.setHeader('Set-Cookie', cookie);
       return { message: 'success', data: user };
     } else {
-      return { message: 'error' };
+      throw new UnauthorizedException();
     }
   }
 
