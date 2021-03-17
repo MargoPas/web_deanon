@@ -32,9 +32,21 @@ export const loginUser = createAsyncThunk(
       body: JSON.stringify({ login: data.login, password: data.password }),
       method: 'POST',
     };
-    const response = await fetchData('/api/login/', postOptions);
-
-    return await (response.json()) as Response;
+    try {
+      const response = await fetchData('/api/login/', postOptions);
+      if(!response.ok) {
+        console.log(response.ok);
+        return thunkAPI.rejectWithValue(response.ok);
+        //throw new Error('Unsuccessful registration');
+      }
+      else {
+        return await (response.json()) as Response;
+      }
+    } catch (err){
+      alert('Authorization failed!')
+      console.log("Problem occurred during fetch: ", err.message);
+      return thunkAPI.rejectWithValue(err.response.ok);
+    }
   })
 
 export const loginFormSlice = createSlice({
@@ -67,6 +79,9 @@ export const loginFormSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = 'failed';
+      state.password = '';
+      state.login = '';
+      state.isAuth = false;
       alert("Something wrong happened during login")
     });
   }

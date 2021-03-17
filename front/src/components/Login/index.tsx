@@ -13,7 +13,7 @@ const LoginForm: React.FC  = () => {
   let isAuth = useAppSelector(state => state.loginForm.isAuth);
   const dispatch = useAppDispatch();
 
-  return ( isAuth ? <Redirect to={Routes.ROOT}/> :
+  return ( isAuth ? <Redirect to={Routes.ROOT} /> :
     <div className={s.root}>
       <h3>{status}</h3>
       <InputGroup id="username" placeholder="Enter your login..."

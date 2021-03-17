@@ -66,12 +66,11 @@ export class AuthService {
 
   async getCookieWithJwtToken(login: string) {
     const user = await this.usersService.findOneByLogin(login);
-    console.log(user, 'user');
+    console.log('Found user: ',user, '(getCookie func)');
     const userId = user.id;
-    console.log(typeof userId);
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
-    console.log('end');
+    console.log(token);
     return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;
   }
 }

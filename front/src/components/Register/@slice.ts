@@ -37,9 +37,21 @@ export const registerUser = createAsyncThunk(
       body: JSON.stringify({ login: data.login, password: data.password, e_mail: data.e_mail, name: data.name }),
       method: 'POST',
     };
-    const response = await fetchData('/api/register/', postOptions);
-
-    return await (response.json()) as Response;
+    try {
+      const response = await fetchData('/api/register/', postOptions);
+      if(!response.ok) {
+        console.log(response.ok);
+        return thunkAPI.rejectWithValue(response.ok);
+        //throw new Error('Unsuccessful registration');
+      }
+      else {
+        return await (response.json()) as Response;
+      }
+    } catch (err){
+      alert('Registration failed!')
+      console.log("Problem occurred during fetch: ", err.message);
+      return thunkAPI.rejectWithValue(err.response.ok);
+    }
   })
 
 export const registerFormSlice = createSlice({
@@ -73,6 +85,11 @@ export const registerFormSlice = createSlice({
     });
     builder.addCase(registerUser.rejected, (state, action) => {
       state.loading = 'failed';
+      state.password = '';
+      state.login = '';
+      state.e_mail = '';
+      state.name = '';
+      state.isAuth = false;
       alert("Something wrong happened during registration")
     });
   }
