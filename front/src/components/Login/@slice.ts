@@ -64,6 +64,10 @@ export const loginFormSlice = createSlice({
       console.log(state.isAuth);
       state.isAuth = true;
       console.log(state.isAuth)
+    },
+    clearState: (state) => {
+      state.isAuth = false;
+      state.loading = 'idle';
     }
   },
   extraReducers: builder => {
@@ -87,7 +91,7 @@ export const loginFormSlice = createSlice({
   }
 })
 
-export const { changeLogin, changePassword, changeIsAuth } = loginFormSlice.actions;
+export const { changeLogin, changePassword, clearState } = loginFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;

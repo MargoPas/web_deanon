@@ -3,8 +3,9 @@ import { Button, InputGroup } from '@blueprintjs/core';
 import s from './Register.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { changeLogin, changePassword, registerUser, changeEmail, changeName} from './@slice';
-import { Redirect } from 'react-router-dom';
-import Routes from '../../pages/routes';
+import {Redirect, useHistory} from 'react-router-dom';
+import {useEffect} from "react";
+import {clearState} from "./@slice";
 
 const RegisterForm: React.FC  = () => {
   const login = useAppSelector(state => state.registerForm.login);
@@ -15,7 +16,16 @@ const RegisterForm: React.FC  = () => {
   let isAuth = useAppSelector(state => state.registerForm.isAuth);
   const dispatch = useAppDispatch();
 
-  return ( isAuth ? <Redirect to={Routes.ROOT}/> :
+  const history = useHistory();
+
+  useEffect(()=> {
+    if(isAuth) {
+        dispatch(clearState());
+        history.push('/');
+    }
+    }, [isAuth]);
+
+  return (
       <div className={s.root}>
         <h3>{status}</h3>
         <InputGroup id="login" placeholder="Your login"

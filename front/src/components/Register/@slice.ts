@@ -70,6 +70,10 @@ export const registerFormSlice = createSlice({
     changeName: (state, action:PayloadAction<string>) => {
       state.name = action.payload
     },
+    clearState: (state) => {
+      state.isAuth = false;
+      state.loading = 'idle';
+    }
   },
   extraReducers: builder => {
     builder.addCase(registerUser.pending, (state, action) => {
@@ -95,7 +99,7 @@ export const registerFormSlice = createSlice({
   }
 })
 
-export const { changeLogin, changePassword, changeEmail, changeName } = registerFormSlice.actions;
+export const { changeLogin, changePassword, changeEmail, changeName, clearState } = registerFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;
