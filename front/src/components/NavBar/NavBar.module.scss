@@ -42,6 +42,7 @@
 a:hover{
   text-decoration: none;
   color: white;
+  transform: scale(1.2);
 }
 .appbarLink:before{
   content:'';
@@ -52,11 +53,16 @@ a:hover{
   left: 12px;
   top:47%;
   animation:out 0.2s cubic-bezier(1, 0, 0.58, 1) 1 both;
+  transform: scale(1.2);
+
 }
 .appbarLink:hover:before{
   animation:in 0.2s cubic-bezier(1, 0, 0.58, 1) 1 both;
   text-decoration: none;
+  transform: scale(1.2);
+
 }
+
 @keyframes in{
   0%{
     width: 0;

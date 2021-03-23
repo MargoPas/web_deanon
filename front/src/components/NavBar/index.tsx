@@ -17,9 +17,6 @@ const NavBar: React.FC = () => {
           <Link className={s.appbarLink} to={Routes.ROOT}>
             {RoutesNames.ROOT}
           </Link>
-          <Link className={s.appbarLink} to={Routes.USERS}>
-            {RoutesNames.USERS}
-          </Link>
           <Link className={s.appbarLink} to={Routes.NEWS}>
             {RoutesNames.NEWS}
           </Link>

@@ -1,0 +1,49 @@
+#mainy{
+  display: flex;
+  left: 100px;
+  position: absolute;
+  margin: 5% auto;
+  width: 700px;
+  height: 400px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+.about{
+  text-align: justify;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 40px;
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  font-family: monospace;
+  -webkit-transform: rotate(-25deg);
+  -moz-transform: rotate(-25deg);
+  -o-transform: rotate(-25deg);
+  -ms-transform: rotate(-25deg);
+  transform: rotate(-25deg);
+  background-size: cover;
+  background-position: center;
+}
+
+.icons{
+  margin: 50px;
+  display: flex;
+  position: fixed;
+  bottom: 80px;
+  right: 100px;
+  flex-direction: row;
+}
+
+
+.aboutUs h2{
+  font-family: monospace;
+  color: white;
+  position: fixed;
+  bottom: 280px;
+  right: 220px;
+  display: flex;
+  flex-direction: column;
+}

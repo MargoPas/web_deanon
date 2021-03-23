@@ -5,13 +5,9 @@ import { changeLogin, changePassword, loginUser } from './@slice';
 import {useEffect} from "react";
 import {clearState} from './@slice'
 import {useHistory} from 'react-router-dom'
-
 import TextField from '@material-ui/core/TextField'
-
-import Container from '@material-ui/core/Container'
-import {Avatar, Box, CssBaseline, makeStyles, Typography} from "@material-ui/core";
+import {Box, makeStyles} from "@material-ui/core";
 import {Button, Icon} from '@blueprintjs/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -19,18 +15,18 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: 'column',
         alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        width: 500,
     },
     form: {
         width: '100%',
         marginTop: theme.spacing(1),
     },
     submit: {
-        margin: theme.spacing(3, 0, 2),
-        width: '100%',
+        marginRight: 30,
+        marginLeft: 25,
+        marginTop: 30,
+        width: '90%',
+        alignItems: 'center',
     }
 }));
 
@@ -55,9 +51,7 @@ const LoginForm: React.FC  = () => {
   return (
       <div className={s.root}>
           <div className={classes.paper}>
-
-                  <Icon icon={'heart-broken'} intent={'danger'} iconSize={60}/>
-
+              <Icon icon={'heart-broken'} intent={'danger'} iconSize={60}/>
               <Box fontFamily={"Monospace"} fontSize={'h2.fontSize'} m={1}>
                   Sign in
               </Box>
@@ -70,7 +64,6 @@ const LoginForm: React.FC  = () => {
                       id={'username'}
                       label={"Your login"}
                       name={'login'}
-
                       value={login}
                       onChange={(event) => dispatch(changeLogin(event.target.value))}
                   />
@@ -86,7 +79,8 @@ const LoginForm: React.FC  = () => {
                       value={password}
                       onChange={(event) => dispatch(changePassword(event.target.value))}
                   />
-                  <Button icon="send-to" intent="none" className={classes.submit} text="Войти" onClick={
+                  <Button disabled={!(password && login)}
+                      icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
                       () => dispatch(loginUser({login, password}))
                   }/>
               </form>
