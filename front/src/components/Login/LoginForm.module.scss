@@ -1,5 +1,11 @@
+@import 'src/_variables';
+
 .root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: $dark-grey;
+}
+body {
+  background-color: $dark-grey;
 }

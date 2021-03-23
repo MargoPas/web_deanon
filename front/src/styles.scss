@@ -1,6 +1,10 @@
 $primary-color: white;
 $bg: black;
+$dark-grey: #525464;
 h1 {
   color: $primary-color;
   background-color: $bg;
+}
+body {
+  background-color: $dark-grey;
 }
