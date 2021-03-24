@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from '../users/dto/login-user-dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { PG_UNIQUE_VIOLATION } from 'postgres-error-codes';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -27,18 +26,15 @@ export class AuthService {
     registrationDto.password = hashedPassword;
     try {
       const createdUser = await this.usersService.createUser(registrationDto);
-      return createdUser;
-    } catch (error) {
-      if (error?.code === PG_UNIQUE_VIOLATION) {
-        throw new HttpException(
-          'User with that login already exists',
-          HttpStatus.BAD_REQUEST,
-        );
+      console.log(createdUser);
+      if (createdUser) {
+        console.log('succeeded');
+        return registrationDto;
+      } else {
+        return false;
       }
-      throw new HttpException(
-        'Something went wrong',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -67,12 +63,13 @@ export class AuthService {
 
   async getCookieWithJwtToken(login: string) {
     const user = await this.usersService.findOneByLogin(login);
-    console.log(user, 'user');
     const userId = user.id;
-    console.log(typeof userId);
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
-    console.log('end');
-    return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;;
+    return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;
+  }
+
+  public getCookieForLogOut() {
+    return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
   }
 }

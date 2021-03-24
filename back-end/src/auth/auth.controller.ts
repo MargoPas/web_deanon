@@ -7,6 +7,7 @@ import {
   Req,
   Request,
   Res,
+  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
@@ -17,13 +18,26 @@ import RequestWithUser from './requestWithUser.interface';
 import JwtAuthenticationGuard from '../common/guard/jwt.auth.guard';
 import { Response } from 'express';
 
-@Controller('authentication')
+@Controller('api')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  async register(@Body() registrationDto: CreateUserDto) {
-    return this.authService.register(registrationDto);
+  async register(
+    @Body() registrationDto: CreateUserDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
+    const answer = await this.authService.register(registrationDto);
+    console.log(answer, 'answer');
+    if (answer != undefined && answer != false) {
+      const cookie = await this.authService.getCookieWithJwtToken(
+        registrationDto.login,
+      );
+      response.setHeader('Set-Cookie', cookie);
+      return { message: 'success', data: answer };
+    } else {
+      throw new UnauthorizedException();
+    }
   }
 
   @HttpCode(200)
@@ -33,28 +47,28 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     const user = await this.authService.validateUser(loginDto);
-    console.log(user, 'aaa');
     if (user != undefined) {
       const login = user.login;
-      console.log(user);
       const cookie = await this.authService.getCookieWithJwtToken(login);
+
       response.setHeader('Set-Cookie', cookie);
-      console.log('aaa');
-      return user;
+      return { message: 'success', data: user };
     } else {
-      console.log('vvv');
-      return { message: 'oh' };
+      throw new UnauthorizedException();
     }
   }
-
 
   @UseGuards(JwtAuthenticationGuard)
   @Get()
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
-    console.log(user);
     user.password = undefined;
-    console.log(user);
     return user;
+  }
+  @UseGuards(JwtAuthenticationGuard)
+  @Post('log-out')
+  async logOut(@Req() request: RequestWithUser, @Res() response: Response) {
+    response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
+    return response.sendStatus(200);
   }
 }
