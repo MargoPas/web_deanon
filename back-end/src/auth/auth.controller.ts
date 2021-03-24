@@ -62,9 +62,13 @@ export class AuthController {
   @Get()
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
-    console.log(user);
     user.password = undefined;
-    console.log(user);
     return user;
+  }
+  @UseGuards(JwtAuthenticationGuard)
+  @Post('log-out')
+  async logOut(@Req() request: RequestWithUser, @Res() response: Response) {
+    response.setHeader('Set-Cookie', this.authService.getCookieForLogOut());
+    return response.sendStatus(200);
   }
 }

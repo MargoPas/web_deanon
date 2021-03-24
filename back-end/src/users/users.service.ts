@@ -56,6 +56,7 @@ export class UsersService {
   }
   async authenticateUser(loginDto: LoginUserDto): Promise<any> {
     const u = await this.findOneByLogin(loginDto.login);
+    console.log('auth');
     if (u) {
       if (await bcrypt.compare(loginDto.password, u.password, null)) {
         return u;

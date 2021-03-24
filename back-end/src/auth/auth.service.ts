@@ -2,13 +2,10 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { LoginUserDto } from '../users/dto/login-user-dto';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { PG_UNIQUE_VIOLATION } from 'postgres-error-codes';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import TokenPayload from './tokenPayload.interface';
-
-const MESSAGE_BAD = { message: 'User is not created. Error' };
 
 @Injectable()
 export class AuthService {
@@ -66,11 +63,13 @@ export class AuthService {
 
   async getCookieWithJwtToken(login: string) {
     const user = await this.usersService.findOneByLogin(login);
-    console.log('Found user: ',user, '(getCookie func)');
     const userId = user.id;
     const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload);
-    console.log(token);
     return `Authentication=${token}; HttpOnly; Path=/authentication; Max-Age=${3600}`;
+  }
+
+  public getCookieForLogOut() {
+    return `Authentication=; HttpOnly; Path=/; Max-Age=0`;
   }
 }
