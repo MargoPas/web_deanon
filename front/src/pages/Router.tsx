@@ -15,7 +15,6 @@ export const Router: React.FC = () => {
         <Switch>
           <Route exact path={Routes.ROOT} component={Root}/>
           <Route exact path={Routes.LOGIN} component={Login}/>
-          <Route exact path={Routes.COUNTER} component={CounterPage}/>
           <Route exact path={Routes.NEWS} component={News}/>
           <Route exact path={Routes.REGISTER} component={Register}/>
         </Switch>

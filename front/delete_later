@@ -1,0 +1,12 @@
+<div className={s.root}>
+      <h3>{status}</h3>
+      <InputGroup id="username" placeholder="Enter your login..."
+                  value={login}
+                  onChange={(event) => dispatch(changeLogin(event.target.value))}/>
+      <InputGroup id="password" placeholder="...and password"
+                  value={password}
+                  onChange={(event) => dispatch(changePassword(event.target.value))}/>
+      <Button icon="send-to" intent="success" text="Войти" onClick={
+        () => dispatch(loginUser({login, password}))
+      }/>
+    </div>

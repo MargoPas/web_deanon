@@ -1,7 +1,7 @@
 import * as React from 'react';
 import s from './LoginForm.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeLogin, changePassword, loginUser } from './@slice';
+import { changeLogin, changePassword, loginUser, changeImageTest } from './@slice';
 import {useEffect} from "react";
 import {clearState} from './@slice'
 import {useHistory} from 'react-router-dom'
@@ -83,6 +83,13 @@ const LoginForm: React.FC  = () => {
                       icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
                       () => dispatch(loginUser({login, password}))
                   }/>
+                  <input type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
+                      if(!event.target.files || event.target.files.length == 0) {
+                          changeImageTest(undefined)
+                          return
+                      }
+                      changeImageTest(event.target.files[0]);
+                  }}/>
               </form>
           </div>
       </div>

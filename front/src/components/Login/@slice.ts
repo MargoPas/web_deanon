@@ -11,6 +11,7 @@ export interface LoginFormState {
   password: string;
   loading: 'idle' | 'pending' | 'succeeded' | 'failed';
   isAuth: boolean;
+  image: any;                              // удалить потом !!!!!
 }
 export interface Response {
   //type: string;
@@ -21,7 +22,8 @@ const initialState: LoginFormState = {
   login: '',
   password: '',
   loading: 'idle',
-  isAuth: false
+  isAuth: false,
+  image: undefined,                          // удалить потом !!!!!!!
 }
 
 export const loginUser = createAsyncThunk(
@@ -68,7 +70,10 @@ export const loginFormSlice = createSlice({
     clearState: (state) => {
       state.isAuth = false;
       state.loading = 'idle';
-    }
+    },
+    changeImageTest: (state, action:PayloadAction<any>) => {   //   тестирование добавления картинки, удалить потом!!!!!!
+      state.image = action.payload
+    },
   },
   extraReducers: builder => {
     builder.addCase(loginUser.pending, (state, action) => {
@@ -91,7 +96,7 @@ export const loginFormSlice = createSlice({
   }
 })
 
-export const { changeLogin, changePassword, clearState } = loginFormSlice.actions;
+export const { changeLogin, changePassword, clearState, changeImageTest } = loginFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;

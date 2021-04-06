@@ -10,6 +10,7 @@ interface IProps {
 }
 
 const NavBar: React.FC = () => {
+
   return (
     <div className={s.root}>
       <div className={s.grid}>
