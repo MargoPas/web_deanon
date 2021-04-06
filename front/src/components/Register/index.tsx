@@ -73,19 +73,10 @@ const RegisterForm: React.FC  = () => {
                       required
                       fullWidth
                       id={'password'}
+                      type = 'password'
                       label={"Your password"}
                       value={password}
                       onChange={(event) => dispatch(changePassword(event.target.value))}
-                  />
-                  <TextField
-                      variant={'outlined'}
-                      margin={'normal'}
-                      required
-                      fullWidth
-                      id={'login'}
-                      label={"Your login"}
-                      value={login}
-                      onChange={(event) => dispatch(changeLogin(event.target.value))}
                   />
                   <TextField
                       variant={'outlined'}
