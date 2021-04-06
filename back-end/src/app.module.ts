@@ -4,10 +4,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-
+import { PeopleModule } from '../src/people/people.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
+    PeopleModule,
     UsersModule,
     AuthModule,
     ConfigModule.forRoot({
@@ -17,7 +18,5 @@ import * as Joi from 'joi';
       }),
     }),
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
