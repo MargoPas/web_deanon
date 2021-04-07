@@ -2,6 +2,12 @@ import s from './RootBar.module.scss'
 import * as React from 'react';
 import {Avatar, makeStyles, Typography} from "@material-ui/core";
 import {deepOrange, deepPurple} from "@material-ui/core/colors";
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {changeIsAuth} from "./@slice";
+import Routes, {RoutesNames} from "../../pages/routes";
+import {Link} from "react-router-dom";
+import {useEffect} from "react";
+
 
 const useStyles = makeStyles((theme) => ({
     orange: {
@@ -25,26 +31,48 @@ const useStyles = makeStyles((theme) => ({
 
 const RootBar: React.FC = () => {
     const classes = useStyles();
+    let isAuth = useAppSelector(state => state.rootState.isAuth);
+    const dispatch = useAppDispatch();
+    function GetIsAuth() {
+        fetch('/api/cookie', {
+            credentials: "include",
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    dispatch(changeIsAuth())
+                }
+                return response;
+            });
+    }
+    useEffect(GetIsAuth, [isAuth]);
     return (
         <div className={'root'}>
-        <div id={s.mainy}>
-            <div className={s.about}>
-                <p>
-                    Стали свидетелем несправедливости? Не можете держать в себе, как все нормальные люди?
-                    Мы Вас не осуждаем. Идея данного приложения принадлежит не нам, а значит, людям до нас приходила в голову
-                    мысль создания такого сайта, где все могли бы публиковать и находить информацию о жестокостях этого мира,
-                    видимо, в надежде на то, что от этого кому-то станет лучше, а может и хуже (вероятно, виновникам несправедливости).
-                    Так что можете чувствовать себя свободными пользоваться возможностями, (пока не) предоставляемыми этим местом.
-                    Регистрируйтесь и вперёд с нами навстречу бесполезным разоблачениям и горьким реалиям нашей российкой жизни!
-                </p>
+            <div id={s.mainy}>
+                <div className={s.about}>
+                    <p>
+                        Стали свидетелем несправедливости? Не можете держать в себе, как все нормальные люди?
+                        Мы Вас не осуждаем. Идея данного приложения принадлежит не нам, а значит, людям до нас приходила в голову
+                        мысль создания такого сайта, где все могли бы публиковать и находить информацию о жестокостях этого мира,
+                        видимо, в надежде на то, что от этого кому-то станет лучше, а может и хуже (вероятно, виновникам несправедливости).
+                        Так что можете чувствовать себя свободными пользоваться возможностями, (пока не) предоставляемыми этим местом.
+                        Регистрируйтесь и вперёд с нами навстречу бесполезным разоблачениям и горьким реалиям нашей российкой жизни!
+                    </p>
+                    {isAuth ? <Link to={Routes.UNMASK}>
+                        {RoutesNames.UNMASK}
+                    </Link>:<p>Sign in to unmask!</p>}
+                </div>
             </div>
-        </div>
             <div className={s.aboutUs}>
                 <h2>При участии:</h2>
-            <div className={s.icons}>
-            <Avatar className={classes.orange}>PR</Avatar>
-            <Avatar className={classes.purple}>BR</Avatar>
-            </div>
+                <div className={s.icons}>
+                    <Avatar className={classes.orange}>PR</Avatar>
+                    <Avatar className={classes.purple}>BR</Avatar>
+                </div>
             </div>
         </div>
     )
@@ -52,4 +80,3 @@ const RootBar: React.FC = () => {
 
 
 export default RootBar;
-

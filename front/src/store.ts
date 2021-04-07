@@ -4,7 +4,7 @@ import {connectRouter} from "connected-react-router";
 import counterReducer from './components/Counter/@slice';
 import loginFormReducer from './components/Login/@slice';
 import registerFormReducer from './components/Register/@slice';
-
+import rootReducer from './components/RootBar/@slice';
 
 export const history = createBrowserHistory();
 
@@ -14,7 +14,8 @@ const reducer = {
   router: connectRouter(history),
   counter: counterReducer,
   loginForm: loginFormReducer,
-  registerForm: registerFormReducer
+  registerForm: registerFormReducer,
+  rootState: rootReducer
   // auth:
 }
 
