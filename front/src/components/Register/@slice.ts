@@ -36,6 +36,9 @@ export const registerUser = createAsyncThunk(
     const postOptions = {
       body: JSON.stringify({ login: data.login, password: data.password, e_mail: data.e_mail, name: data.name }),
       method: 'POST',
+      credentials: "include",
+      mode: "cors",
+      referrerPolicy: "no-referrer"
     };
     try {
       const response = await fetchData('/api/register/', postOptions);

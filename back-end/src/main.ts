@@ -19,7 +19,7 @@ const options: cors.CorsOptions = {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors(options));
+  app.use(cors(false));
   app.use(cookieParser());
   const config = new DocumentBuilder()
     .setTitle('For our Deanon')

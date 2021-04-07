@@ -7,7 +7,7 @@ import {changeIsAuth} from "./@slice";
 import Routes, {RoutesNames} from "../../pages/routes";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
-
+import {fetchData} from '../../utils/API'
 
 const useStyles = makeStyles((theme) => ({
     orange: {
@@ -34,22 +34,29 @@ const RootBar: React.FC = () => {
     let isAuth = useAppSelector(state => state.rootState.isAuth);
     const dispatch = useAppDispatch();
     function GetIsAuth() {
-        fetch('/api/cookie', {
+        fetchData('/api/cookie', {
             credentials: "include",
             method: 'GET',
+            referrerPolicy: "unsafe-url",
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Cache": "no-cache"
+            }
         })
             .then(response => {
                 if (response.ok) {
                     dispatch(changeIsAuth())
                 }
-                return response;
+                console.log(response.ok)
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+
             });
     }
-    useEffect(GetIsAuth, [isAuth]);
+    useEffect(()=>{GetIsAuth();}, [isAuth]);
     return (
         <div className={'root'}>
             <div id={s.mainy}>

@@ -33,6 +33,10 @@ export const loginUser = createAsyncThunk(
     const postOptions = {
       body: JSON.stringify({ login: data.login, password: data.password }),
       method: 'POST',
+      credentials: "include",
+      mode: "cors",
+      referrerPolicy: "unsafe-url"
+
     };
     try {
       const response = await fetchData('/api/login/', postOptions);

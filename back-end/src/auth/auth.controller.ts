@@ -63,6 +63,7 @@ export class AuthController {
   authenticate(@Req() request: RequestWithUser) {
     const user = request.user;
     user.password = undefined;
+    console.log(user);
     return user;
   }
   @UseGuards(JwtAuthenticationGuard)
