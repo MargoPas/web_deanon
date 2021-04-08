@@ -36,14 +36,12 @@ export const loginUser = createAsyncThunk(
       credentials: "include",
       mode: "cors",
       referrerPolicy: "unsafe-url"
-
     };
     try {
       const response = await fetchData('/api/login/', postOptions);
       if(!response.ok) {
         console.log(response.ok);
         return thunkAPI.rejectWithValue(response.ok);
-        //throw new Error('Unsuccessful registration');
       }
       else {
         return await (response.json()) as Response;
