@@ -14,19 +14,20 @@ export interface unmaskFormState {
     Middle_Name: string,
     Last_Name: string,
     Description: string,
-    Photo: any,                           // удалить потом !!!!!
+    Photo: any,
+    isAuth: boolean;
 }
 export interface Response {
-    //type: string;
     message: string;
 }
-// Define the initial state using that type
+
 const initialState: unmaskFormState = {
     First_Name: "",
     Middle_Name: '',
     Last_Name: '',
     Description: '',
-    Photo: undefined,                          // удалить потом !!!!!!!
+    Photo: undefined,
+    isAuth: false,
 }
 
 export const unmaskPerson = createAsyncThunk(
@@ -48,14 +49,13 @@ export const unmaskPerson = createAsyncThunk(
         try {
             const response = await fetchData('/api/uploading_people/', postOptions);
             if(!response.ok) {
-                console.log(response.ok);
                 return thunkAPI.rejectWithValue(response.ok);
             }
             else {
                 return await (response.json()) as Response;
             }
         } catch (err){
-            alert('Authorization failed!')
+            alert('Uploading your complaint failed!')
             console.log("Problem occurred during fetch: ", err.message);
             return thunkAPI.rejectWithValue(err.response.ok);
         }
@@ -66,46 +66,50 @@ export const unmaskFormSlice = createSlice({
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
-        changeLogin: (state, action:PayloadAction<string>) => {
-            state.login = action.payload
+        changeFirst: (state, action:PayloadAction<string>) => {
+            state.First_Name = action.payload
         },
-        changePassword: (state, action:PayloadAction<string>) => {
-            state.password = action.payload
+        changeMiddle: (state, action:PayloadAction<string>) => {
+            state.Middle_Name = action.payload
+        },
+        changeLast: (state, action:PayloadAction<string>) => {
+            state.Last_Name = action.payload
+        },
+        changeDesc: (state, action:PayloadAction<string>) => {
+            state.Description = action.payload
         },
         changeIsAuth: (state) => {
-            console.log(state.isAuth);
             state.isAuth = true;
-            console.log(state.isAuth)
         },
         clearState: (state) => {
             state.isAuth = false;
-            state.loading = 'idle';
         },
-        changeImageTest: (state, action:PayloadAction<any>) => {   //   тестирование добавления картинки, удалить потом!!!!!!
-            state.image = action.payload
+        changePhoto: (state, action:PayloadAction<any>) => {
+            state.Photo = action.payload
         },
     },
     extraReducers: builder => {
-        builder.addCase(loginUser.pending, (state, action) => {
-            state.loading = 'pending'
-        });
-        builder.addCase(loginUser.fulfilled, (state, action) => {
-            state.loading = 'succeeded';
-            state.password = '';
-            state.login = '';
+        builder.addCase(unmaskPerson.fulfilled, (state, action) => {
+            state.First_Name = '';
+            state.Middle_Name = '';
+            state.Last_Name = '';
+            state.Description = '';
+            state.Photo = undefined;
             state.isAuth = true;
             //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
         });
-        builder.addCase(loginUser.rejected, (state, action) => {
-            state.loading = 'failed';
-            state.password = '';
-            state.login = '';
+        builder.addCase(unmaskPerson.rejected, (state, action) => {
+            state.First_Name = '';
+            state.Middle_Name = '';
+            state.Last_Name = '';
+            state.Description = '';
+            state.Photo = undefined;
             state.isAuth = false;
-            alert("Something wrong happened during login")
+            alert("Something wrong happened during uploading")
         });
     }
 })
 
-export const { changeLogin, changePassword, clearState, changeImageTest } = unmaskFormSlice.actions;
+export const { changeFirst, changeMiddle, changeLast, changeDesc, changeIsAuth,clearState, changePhoto } = unmaskFormSlice.actions;
 
 export default unmaskFormSlice.reducer
