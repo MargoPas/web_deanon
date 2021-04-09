@@ -5,6 +5,7 @@ import counterReducer from './components/Counter/@slice';
 import loginFormReducer from './components/Login/@slice';
 import registerFormReducer from './components/Register/@slice';
 import rootReducer from './components/RootBar/@slice';
+import unmaskFormReducer from "./components/UnmaskForm/@slice";
 
 export const history = createBrowserHistory();
 
@@ -15,7 +16,8 @@ const reducer = {
   counter: counterReducer,
   loginForm: loginFormReducer,
   registerForm: registerFormReducer,
-  rootState: rootReducer
+  rootState: rootReducer,
+  unmaskForm: unmaskFormReducer,
   // auth:
 }
 
