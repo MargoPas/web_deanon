@@ -99,17 +99,28 @@ const UnmaskForm: React.FC  = () => {
                         onChange={(event) => dispatch(changeLast(event.target.value))}
                     />
                     </ThemeProvider>
-                    <Button disabled={!(Last_Name && First_Name && Description)}
-                            icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
-                        () => dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
-                    }/>
-                    <input type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
+                    <input className={s.input} type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
                         if(!event.target.files || event.target.files.length == 0) {
                             changePhoto(undefined)
                             return
                         }
                         changePhoto(event.target.files[0]);
                     }}/>
+                    <Button disabled={!(Last_Name && First_Name && Description)}
+                                icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
+                    () => dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
+                }/>
+                </div>
+                <div className={s.right}>
+                    <p className={s.p_text}>
+                        Describe this shitty person! Don't be<p className={s.p_red}>shy</p>
+                    </p>
+                    <textarea
+                        className={s.textarea}
+                        rows={10}
+                        onChange={(ev) => {dispatch(changeDesc(ev.target.value))}}>
+                        Let's fuck up his life
+                    </textarea>
                 </div>
             </div>
         </div>
