@@ -101,7 +101,7 @@ const UnmaskForm: React.FC  = () => {
                     </ThemeProvider>
                     <input className={s.input} type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
                         if(!event.target.files || event.target.files.length == 0) {
-                            changePhoto(undefined)
+                            changePhoto(null)
                             return
                         }
                         changePhoto(event.target.files[0]);

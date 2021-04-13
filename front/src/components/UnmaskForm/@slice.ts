@@ -26,12 +26,12 @@ const initialState: unmaskFormState = {
     Middle_Name: '',
     Last_Name: '',
     Description: '',
-    Photo: undefined,
+    Photo: null,
     isAuth: false,
 }
 
 export const unmaskPerson = createAsyncThunk(
-    'login/auth',
+    'unmask',
     async (data: Form, thunkAPI) => {
         const postOptions = {
             body: JSON.stringify({
@@ -62,7 +62,7 @@ export const unmaskPerson = createAsyncThunk(
     })
 
 export const unmaskFormSlice = createSlice({
-    name: 'login',
+    name: 'unmask',
     // `createSlice` will infer the state type from the `initialState` argument
     initialState,
     reducers: {
@@ -94,7 +94,7 @@ export const unmaskFormSlice = createSlice({
             state.Middle_Name = '';
             state.Last_Name = '';
             state.Description = '';
-            state.Photo = undefined;
+            state.Photo = null;
             state.isAuth = true;
             //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
         });
@@ -103,7 +103,7 @@ export const unmaskFormSlice = createSlice({
             state.Middle_Name = '';
             state.Last_Name = '';
             state.Description = '';
-            state.Photo = undefined;
+            state.Photo = null;
             state.isAuth = false;
             alert("Something wrong happened during uploading")
         });
