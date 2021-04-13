@@ -47,7 +47,7 @@ export const unmaskPerson = createAsyncThunk(
             referrerPolicy: "unsafe-url"
         };
         try {
-            const response = await fetchData('/api/uploading_people/', postOptions);
+            const response = await fetchData('/api/uploading_people/create', postOptions);
             if(!response.ok) {
                 return thunkAPI.rejectWithValue(response.ok);
             }
