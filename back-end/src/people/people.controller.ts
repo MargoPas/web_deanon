@@ -25,18 +25,15 @@ export class PeopleController {
     console.log(file);
     await this.PeopleService.setPhoto(userId, `${file.path}`);
   }
-  // uploadPhoto(@Param('userid') userId, @UploadedFile() file) {
-  //  console.log('tut');
-  //   this.PeopleService.setPhoto(
-  //     userId,
-  //   `${'http://localhost:3000/'}${file.path}`,
-  // );
-  //  console.log(`${'http://localhost:3000/'}${file.path}`);
-  // }
 
   @Post('/create')
-  async createPeople(@Body() createPeopleDto: CreatePeopleDto) {
-    return this.PeopleService.create(createPeopleDto);
+  @UseInterceptors(FileInterceptor('file', { dest: './Photo' }))
+  async createPeople(
+    @UploadedFile() file,
+    @Body() createPeopleDto: CreatePeopleDto,
+  ) {
+    console.log(file)
+    return this.PeopleService.create(createPeopleDto, `${file.path}`);
   }
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {
