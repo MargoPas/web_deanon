@@ -19,21 +19,11 @@ import { CreatePeopleDto } from './dto/create-people.dto';
 export class PeopleController {
   constructor(private readonly PeopleService: PeopleService) {}
 
-  @Post(':userid/Photo')
-  @UseInterceptors(FileInterceptor('file', { dest: './Photo' }))
-  async uploadSingle(@UploadedFile() file, @Param('userid') userId) {
-    console.log(file);
-    await this.PeopleService.setPhoto(userId, `${file.path}`);
-  }
-
   @Post('/create')
   @UseInterceptors(FileInterceptor('file', { dest: './Photo' }))
-  async createPeople(
-    @UploadedFile() file,
-    @Body() createPeopleDto: CreatePeopleDto,
-  ) {
-    console.log(file)
-    return this.PeopleService.create(createPeopleDto, `${file.path}`);
+  async createPeople(@Body() createPeopleDto: CreatePeopleDto) {
+    console.log(createPeopleDto);
+    return this.PeopleService.create(createPeopleDto);
   }
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {

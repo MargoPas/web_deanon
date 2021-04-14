@@ -11,18 +11,8 @@ export class PeopleService {
     private readonly PeopleRepository: Repository<People>,
   ) {}
 
-  async create(CreateUserDto: CreatePeopleDto, photoUrl: string) {
-    const people = this.PeopleRepository.create(CreateUserDto);
-    people.Photo = photoUrl;
+  async create(CreatePeopleDto: CreatePeopleDto) {
+    const people = this.PeopleRepository.create(CreatePeopleDto);
     await this.PeopleRepository.save(people);
-  }
-
-  async setPhoto(userId: number, photoUrl: string) {
-    try {
-      const user = await this.PeopleRepository.findOne({ id: userId });
-      await this.PeopleRepository.update({ id: userId }, { Photo: photoUrl });
-    } catch (e) {
-      return { message: "Can't upload your photo" };
-    }
   }
 }
