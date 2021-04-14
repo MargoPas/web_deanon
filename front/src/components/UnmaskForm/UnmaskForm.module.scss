@@ -34,10 +34,13 @@
   width: 500px;
   height: 500px;
   box-sizing: border-box;
+  border: 3px dashed red;
 }
 .textarea {
   resize: vertical;
   border-radius: 0 20px 20px 20px;
+  background-color: gainsboro;
+  font-family: monospace;
 }
 .input {
   display: flex;
