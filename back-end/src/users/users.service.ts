@@ -22,6 +22,8 @@ export class UsersService {
     try {
       const user = await this.UsersRepository.create(CreateUserDto);
       console.log(user.password);
+      user.role = 'user';
+      console.log(user);
       await this.UsersRepository.save(user);
       return true;
     } catch (e) {
