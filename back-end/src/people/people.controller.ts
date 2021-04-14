@@ -23,7 +23,8 @@ export class PeopleController {
   async createPeople(@Body() createPeopleDto: CreatePeopleDto) {
     try {
       console.log(createPeopleDto);
-      return this.PeopleService.create(createPeopleDto);
+      await this.PeopleService.create(createPeopleDto);
+      return { message: 'ok' };
     } catch (e) {
       return e;
     }
