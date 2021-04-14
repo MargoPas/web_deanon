@@ -39,7 +39,6 @@ export const unmaskPerson = createAsyncThunk(
                 Description: data.Description,
             }),
             method: 'POST',
-            credentials: "include",
             mode: "cors",
             referrerPolicy: "unsafe-url"
         };
@@ -96,7 +95,6 @@ export const unmaskFormSlice = createSlice({
             state.Middle_Name = '';
             state.Last_Name = '';
             state.Description = '';
-
             state.isAuth = false;
             alert("Something wrong happened during uploading")
         });
