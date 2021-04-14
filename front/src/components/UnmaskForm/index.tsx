@@ -44,8 +44,6 @@ const UnmaskForm: React.FC  = () => {
     const Middle_Name = useAppSelector(state => state.unmaskForm.Middle_Name);
     const Last_Name = useAppSelector(state => state.unmaskForm.Last_Name);
     const Description = useAppSelector(state => state.unmaskForm.Description);
-    //const Photo = useAppSelector(state => state.unmaskForm.Photo);
-    let [Photo, changePhoto] = useState();
     let isAuth = useAppSelector(state => state.unmaskForm.isAuth);
     const dispatch = useAppDispatch();
     const history = useHistory();
@@ -102,27 +100,12 @@ const UnmaskForm: React.FC  = () => {
                         onChange={(event) => dispatch(changeLast(event.target.value))}
                     />
                     </ThemeProvider>
-                    <input className={s.input} type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
-                        if(!event.target.files || event.target.files.length == 0) {
-                            changePhoto(undefined)
-                            return
-                        }
-                        // @ts-ignore
-                        changePhoto(event.target.files[0]);
-                    }}/>
+
                     <Button disabled={!(Last_Name && First_Name && Description)}
-                                icon="log-in" intent={'danger'} className={classes.submit} text="Отправить" onClick={
-                    () => {
-                        //const form = new FormData();
-                        //form.append('First_Name', First_Name);
-                        //form.append('Middle_Name', Middle_Name);
-                        //form.append('Last_Name', Last_Name);
-                        //form.append('Description', Description);
-                        // @ts-ignore
-                        //form.append('Photo', Photo);
-                        dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
-                    }
-                }/>
+                            icon="log-in" intent={'danger'}
+                            className={classes.submit} text="Отправить"
+                            onClick={() => {dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description}));}}
+                    />
                 </div>
                 <div className={s.right}>
                     <p className={s.p_text}>
@@ -140,5 +123,7 @@ const UnmaskForm: React.FC  = () => {
     )
 }
 
+//() => {
+//    dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
 
 export default UnmaskForm;
