@@ -20,10 +20,14 @@ export class PeopleController {
   constructor(private readonly PeopleService: PeopleService) {}
 
   @Post('/create')
-  @UseInterceptors(FileInterceptor('file', { dest: './Photo' }))
   async createPeople(@Body() createPeopleDto: CreatePeopleDto) {
-    console.log(createPeopleDto);
-    return this.PeopleService.create(createPeopleDto);
+    try {
+      console.log(createPeopleDto);
+      await this.PeopleService.create(createPeopleDto);
+      return { message: 'ok' };
+    } catch (e) {
+      return e;
+    }
   }
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {
