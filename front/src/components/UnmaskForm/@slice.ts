@@ -33,14 +33,21 @@ const initialState: unmaskFormState = {
 export const unmaskPerson = createAsyncThunk(
     'unmask',
     async (data: Form, thunkAPI) => {
+        let form = new FormData();
+        form.append('First_Name', data.First_Name)
+        form.append('Middle_Name', data.Middle_Name)
+        form.append('Last_Name', data.Last_Name)
+        form.append('Description', data.Description)
+        form.append('Photo', data.Photo)
         const postOptions = {
-            body: JSON.stringify({
-                First_Name: data.First_Name,
-                Middle_Name: data.Middle_Name,
-                Last_Name: data.Last_Name,
-                Description: data.Description,
-                Photo: data.Photo,
-            }),
+            body: form,
+                //JSON.stringify({
+                //First_Name: data.First_Name,
+                //Middle_Name: data.Middle_Name,
+                //Last_Name: data.Last_Name,
+                //Description: data.Description,
+                //Photo: data.Photo,
+            //}),
             method: 'POST',
             credentials: "include",
             mode: "cors",
