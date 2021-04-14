@@ -94,7 +94,7 @@ export const unmaskFormSlice = createSlice({
             state.Middle_Name = '';
             state.Last_Name = '';
             state.Description = '';
-            state.Photo = null;
+            state.Photo = undefined;
             state.isAuth = true;
             //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
         });
@@ -103,7 +103,7 @@ export const unmaskFormSlice = createSlice({
             state.Middle_Name = '';
             state.Last_Name = '';
             state.Description = '';
-            state.Photo = null;
+            state.Photo = undefined;
             state.isAuth = false;
             alert("Something wrong happened during uploading")
         });

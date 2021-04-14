@@ -1,7 +1,7 @@
 import * as React from 'react';
 import s from './UnmaskForm.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeFirst, changeDesc, changeLast, unmaskPerson, changePhoto, clearState, changeIsAuth, changeMiddle } from './@slice';
+import { changeFirst, changeDesc, changeLast, unmaskPerson, clearState, changeIsAuth, changeMiddle } from './@slice';
 import {useEffect} from "react";
 import {useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
@@ -9,7 +9,8 @@ import {Box, makeStyles} from "@material-ui/core";
 import {Button, Icon} from '@blueprintjs/core'
 import {purple, red} from "@material-ui/core/colors";
 import { ThemeProvider } from "@material-ui/styles";
-import {createMuiTheme} from '@material-ui/core/styles'
+import {createMuiTheme} from '@material-ui/core/styles';
+import {useState} from "react";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -43,7 +44,8 @@ const UnmaskForm: React.FC  = () => {
     const Middle_Name = useAppSelector(state => state.unmaskForm.Middle_Name);
     const Last_Name = useAppSelector(state => state.unmaskForm.Last_Name);
     const Description = useAppSelector(state => state.unmaskForm.Description);
-    const Photo = useAppSelector(state => state.unmaskForm.Photo);
+    //const Photo = useAppSelector(state => state.unmaskForm.Photo);
+    let [Photo, changePhoto] = useState();
     let isAuth = useAppSelector(state => state.unmaskForm.isAuth);
     const dispatch = useAppDispatch();
     const history = useHistory();
@@ -56,11 +58,12 @@ const UnmaskForm: React.FC  = () => {
         }
     }, [isAuth]);
 
+
     return (
         <div className={s.root}>
             <div id={s.mainy}>
                 <div className={s.icon}>
-                    <Icon icon={'heart-broken'} intent={'danger'} iconSize={60}/>
+                    <Icon icon={'clean'} intent={'warning'} iconSize={60}/>
                 </div>
                 <div className={s.left}>
                     <ThemeProvider theme={theme}>
@@ -101,14 +104,24 @@ const UnmaskForm: React.FC  = () => {
                     </ThemeProvider>
                     <input className={s.input} type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
                         if(!event.target.files || event.target.files.length == 0) {
-                            changePhoto(null)
+                            changePhoto(undefined)
                             return
                         }
+                        // @ts-ignore
                         changePhoto(event.target.files[0]);
                     }}/>
                     <Button disabled={!(Last_Name && First_Name && Description)}
-                                icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
-                    () => dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
+                                icon="log-in" intent={'danger'} className={classes.submit} text="Отправить" onClick={
+                    () => {
+                        //const form = new FormData();
+                        //form.append('First_Name', First_Name);
+                        //form.append('Middle_Name', Middle_Name);
+                        //form.append('Last_Name', Last_Name);
+                        //form.append('Description', Description);
+                        // @ts-ignore
+                        //form.append('Photo', Photo);
+                        dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
+                    }
                 }/>
                 </div>
                 <div className={s.right}>
@@ -117,7 +130,7 @@ const UnmaskForm: React.FC  = () => {
                     </p>
                     <textarea
                         className={s.textarea}
-                        rows={10}
+                        rows={19}
                         onChange={(ev) => {dispatch(changeDesc(ev.target.value))}}>
                         Let's fuck up his life
                     </textarea>
