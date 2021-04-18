@@ -16,5 +16,4 @@ export class CreatePeopleDto {
   @ApiProperty()
   @IsNotEmpty()
   Description: string;
-
 }

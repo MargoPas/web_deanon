@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
+
 const options: cors.CorsOptions = {
   allowedHeaders: [
     'Origin',
