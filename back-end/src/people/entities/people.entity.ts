@@ -18,7 +18,4 @@ export class People {
 
   @Column()
   Description: string;
-
-  @Column()
-  Photo: string;
 }

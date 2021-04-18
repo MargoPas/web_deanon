@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
+import * as bodyParser from 'body-parser';
 
 const options: cors.CorsOptions = {
   allowedHeaders: [
@@ -19,8 +20,10 @@ const options: cors.CorsOptions = {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(cors(options));
+  app.use(cors(false));
   app.use(cookieParser());
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
   const config = new DocumentBuilder()
     .setTitle('For our Deanon')
     .setDescription("The Regina's API description")

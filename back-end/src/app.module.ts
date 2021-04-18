@@ -4,7 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-import { PeopleModule } from './people/people.module';
+
+import { PeopleModule } from '../src/people/people.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
