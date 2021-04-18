@@ -28,6 +28,7 @@ export class PeopleController {
     } catch (e) {
       return e;
     }
+
   }
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {

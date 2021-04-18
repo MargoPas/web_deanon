@@ -18,5 +18,4 @@ export class People {
 
   @Column()
   Description: string;
-
 }
