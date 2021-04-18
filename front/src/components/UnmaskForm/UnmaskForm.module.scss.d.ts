@@ -2,11 +2,14 @@
 // Please do not change this file!
 interface CssExports {
   'icon': string;
+  'icon2': string;
+  'icon3': string;
   'input': string;
   'left': string;
   'mainy': string;
   'p_red': string;
-  'p_text': string;
+  'p_text1': string;
+  'p_text2': string;
   'right': string;
   'root': string;
   'textarea': string;

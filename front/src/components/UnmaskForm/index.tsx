@@ -59,10 +59,13 @@ const UnmaskForm: React.FC  = () => {
 
     return (
         <div className={s.root}>
+            <div className={s.icon}>
+                <Icon icon={'star-empty'} intent={'danger'} iconSize={60}/>
+            </div>
+            <div className={s.icon3}>
+                <Icon icon={'star'} intent={'danger'} iconSize={40}/>
+            </div>
             <div id={s.mainy}>
-                <div className={s.icon}>
-                    <Icon icon={'clean'} intent={'warning'} iconSize={60}/>
-                </div>
                 <div className={s.left}>
                     <ThemeProvider theme={theme}>
                     <TextField
@@ -102,22 +105,28 @@ const UnmaskForm: React.FC  = () => {
                     </ThemeProvider>
 
                     <Button disabled={!(Last_Name && First_Name && Description)}
-                            icon="log-in" intent={'danger'}
+                            icon="draw" intent={'danger'}
                             className={classes.submit} text="Отправить"
                             onClick={() => {dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description}));}}
                     />
                 </div>
                 <div className={s.right}>
-                    <p className={s.p_text}>
-                        Describe this shitty person! Don't be<p className={s.p_red}>shy</p>
+                    <p className={s.p_text1}>
+                        Describe this shitty person!
+                    </p>
+                    <p className={s.p_text2}>
+                        Don't be <p className={s.p_red}>shy...</p>
                     </p>
                     <textarea
+                        placeholder={'Let\'s fuck up his life'}
                         className={s.textarea}
                         rows={19}
                         onChange={(ev) => {dispatch(changeDesc(ev.target.value))}}>
-                        Let's fuck up his life
                     </textarea>
                 </div>
+            </div>
+            <div className={s.icon2}>
+                <Icon icon={'star-empty'} intent={'danger'} iconSize={60}/>
             </div>
         </div>
     )
