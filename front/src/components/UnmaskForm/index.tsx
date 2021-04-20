@@ -45,6 +45,7 @@ const UnmaskForm: React.FC  = () => {
     const Last_Name = useAppSelector(state => state.unmaskForm.Last_Name);
     const Description = useAppSelector(state => state.unmaskForm.Description);
     let isAuth = useAppSelector(state => state.unmaskForm.isAuth);
+    let [Photo, changePhoto] = useState();
     const dispatch = useAppDispatch();
     const history = useHistory();
     const classes = useStyles();
@@ -103,11 +104,19 @@ const UnmaskForm: React.FC  = () => {
                         onChange={(event) => dispatch(changeLast(event.target.value))}
                     />
                     </ThemeProvider>
-
+                    <input className={s.input} type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
+                        if(!event.target.files || event.target.files.length == 0) {
+                            changePhoto(undefined)
+                            return
+                        }
+                        // @ts-ignore
+                        changePhoto(event.target.files[0]);
+                    }
+                    }/>
                     <Button disabled={!(Last_Name && First_Name && Description)}
                             icon="draw" intent={'danger'}
                             className={classes.submit} text="Отправить"
-                            onClick={() => {dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description}));}}
+                            onClick={() => {dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}));}}
                     />
                 </div>
                 <div className={s.right}>
