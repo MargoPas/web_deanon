@@ -19,4 +19,9 @@ export class People {
   @Column()
   Description: string;
 
+  @Column()
+  user_id: number;
+
+  @Column()
+  Photo: string;
 }

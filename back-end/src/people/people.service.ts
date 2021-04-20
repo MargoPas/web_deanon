@@ -12,8 +12,16 @@ export class PeopleService {
     private readonly PeopleRepository: Repository<People>,
   ) {}
 
-  async create(CreatePeopleDto: CreatePeopleDto) {
-    const people = this.PeopleRepository.create(CreatePeopleDto);
+  async create(CreatePeopleDto: CreatePeopleDto, user_id, photo_url) {
+    console.log(photo_url);
+    const peopledto = {
+      ...CreatePeopleDto,
+      user_id: user_id,
+      Photo: photo_url,
+    };
+    console.log(peopledto);
+    const people = this.PeopleRepository.create(peopledto);
+
     await this.PeopleRepository.save(people);
   }
 
