@@ -3,12 +3,15 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
-import * as Joi from 'joi';
 import { PeopleModule } from '../src/people/people.module';
+import { VoteModule } from './vote/vote.module';
+import * as Joi from 'joi';
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     PeopleModule,
+    VoteModule,
     UsersModule,
     AuthModule,
     ConfigModule.forRoot({
