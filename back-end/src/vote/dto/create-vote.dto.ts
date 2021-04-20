@@ -1,19 +1,16 @@
 import { IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreatePeopleDto {
+export class CreateVoteDto {
   @ApiProperty()
   @IsNotEmpty()
-  Last_Name: string;
+  user_id: number;
 
   @ApiProperty()
   @IsNotEmpty()
-  First_Name: string;
-
-  @ApiProperty()
-  Middle_Name: string;
+  people_id: number;
 
   @ApiProperty()
   @IsNotEmpty()
-  Description: string;
+  stars: number;
 }
