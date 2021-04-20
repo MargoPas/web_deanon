@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchData } from '../../utils/API'
 
+
 // Define a type for the slice state
 export interface Form {
     First_Name: string,
@@ -38,6 +39,7 @@ export const unmaskPerson = createAsyncThunk(
         form.append('Middle_Name', data.Middle_Name)
         form.append('Last_Name', data.Last_Name)
         form.append('Description', data.Description)
+        form.append('Photo', data.Photo)
         const postOptions = {
             body: form,
             method: 'POST',
@@ -45,7 +47,10 @@ export const unmaskPerson = createAsyncThunk(
             referrerPolicy: "unsafe-url"
         };
         try {
-            const response = await fetchData('/api/uploading_people/create', postOptions);
+            const response = await fetch('/api/uploading_people/create',  {
+                method: 'Post',
+                body: form,
+            });
             if(!response.ok) {
                 return thunkAPI.rejectWithValue(response.ok);
             }

@@ -25,7 +25,7 @@ export class PeopleController {
   constructor(private readonly PeopleService: PeopleService) {}
 
   //@UseGuards(JwtAuthenticationGuard)
-  @UseInterceptors(FileInterceptor('file', { dest: './Photo' }))
+  @UseInterceptors(FileInterceptor('Photo', { dest: './Photo' }))
   @Post('/create')
   async createPeople(
     @Body() createPeopleDto: CreatePeopleDto,
@@ -33,13 +33,14 @@ export class PeopleController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
+      console.log('tut');
       console.log(createPeopleDto);
       const user_id = 2//request.user.id;
       console.log(`${file.path}`);
       await this.PeopleService.create(createPeopleDto, user_id, `${file.path}`);
       return { message: 'ok' };
     } catch (e) {
-      console.log(e)
+      console.log(e);
       return e;
     }
   }
