@@ -7,13 +7,14 @@ export interface Form {
     Middle_Name: string,
     Last_Name: string,
     Description: string,
-
+    Photo: any,
 }
 export interface unmaskFormState {
     First_Name: string,
     Middle_Name: string,
     Last_Name: string,
     Description: string,
+    Photo: any,
     isAuth: boolean;
 }
 export interface Response {
@@ -25,19 +26,20 @@ const initialState: unmaskFormState = {
     Middle_Name: '',
     Last_Name: '',
     Description: '',
+    Photo: null,
     isAuth: false,
 }
 
 export const unmaskPerson = createAsyncThunk(
     'unmask',
     async (data: Form, thunkAPI) => {
+        let form = new FormData();
+        form.append('First_Name', data.First_Name)
+        form.append('Middle_Name', data.Middle_Name)
+        form.append('Last_Name', data.Last_Name)
+        form.append('Description', data.Description)
         const postOptions = {
-            body: JSON.stringify({
-                First_Name: data.First_Name,
-                Middle_Name: data.Middle_Name,
-                Last_Name: data.Last_Name,
-                Description: data.Description,
-            }),
+            body: form,
             method: 'POST',
             mode: "cors",
             referrerPolicy: "unsafe-url"
@@ -88,6 +90,7 @@ export const unmaskFormSlice = createSlice({
             state.Last_Name = '';
             state.Description = '';
             state.isAuth = true;
+            state.Photo = null;
             //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
         });
         builder.addCase(unmaskPerson.rejected, (state, action) => {
@@ -96,6 +99,7 @@ export const unmaskFormSlice = createSlice({
             state.Last_Name = '';
             state.Description = '';
             state.isAuth = false;
+            state.Photo = null;
             alert("Something wrong happened during uploading")
         });
     }

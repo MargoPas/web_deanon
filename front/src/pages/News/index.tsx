@@ -10,7 +10,7 @@ const News: React.FC = () => {
   return(
     <div>
       <NavBar/>
-      <SlavesList newsList={[]}/>
+      <SlavesList slavesList={[]}/>
     </div>
   )
 }
