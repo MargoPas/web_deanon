@@ -8,6 +8,7 @@ import {CounterPage} from './Counter';
 import {Register} from "./Register";
 import News from './News';
 import {Unmask} from "./UnmaskForm";
+import {ResultsPage} from "./Results";
 
 export const Router: React.FC = () => {
   return(
@@ -19,6 +20,7 @@ export const Router: React.FC = () => {
           <Route exact path={Routes.NEWS} component={News}/>
           <Route exact path={Routes.REGISTER} component={Register}/>
           <Route exact path={Routes.UNMASK} component={Unmask}/>
+          <Route path={`/bastards/:First/:Middle/:Last`} component={ResultsPage} />
         </Switch>
       </React.Suspense>
     </BrowserRouter>

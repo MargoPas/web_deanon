@@ -1,6 +1,6 @@
 // @ts-ignore
 import React, { useEffect } from 'react';
-import NewsList from '../../components/NewsList';
+import SlavesList from '../../components/SlavesList';
 import NavBar from '../../components/NavBar';
 
 const News: React.FC = () => {
@@ -10,7 +10,7 @@ const News: React.FC = () => {
   return(
     <div>
       <NavBar/>
-      <NewsList newsList={[]}/>
+      <SlavesList slavesList={[]}/>
     </div>
   )
 }
