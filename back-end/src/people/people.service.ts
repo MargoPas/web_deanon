@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { People } from './entities/people.entity';
 import { CreatePeopleDto } from './dto/create-people.dto';
 import { FindPeopleDto } from './dto/find-people.dto';
+import { FileService } from '../file/file.service';
 
 @Injectable()
 export class PeopleService {
@@ -12,8 +13,8 @@ export class PeopleService {
     private readonly PeopleRepository: Repository<People>,
   ) {}
 
-  async create(CreatePeopleDto: CreatePeopleDto, user_id, photo_url) {
-    console.log(photo_url);
+  async create(CreatePeopleDto: CreatePeopleDto, user_id, file) {
+    const photo_url = await FileService.createFile(file);
     const peopledto = {
       ...CreatePeopleDto,
       user_id: user_id,
