@@ -83,13 +83,6 @@ const LoginForm: React.FC  = () => {
                       icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
                       () => dispatch(loginUser({login, password}))
                   }/>
-                  <input type={'file'} name={'file'} accept={'image/*'} onChange={(event) => {
-                      if(!event.target.files || event.target.files.length == 0) {
-                          changeImageTest(undefined)
-                          return
-                      }
-                      changeImageTest(event.target.files[0]);
-                  }}/>
               </form>
           </div>
       </div>

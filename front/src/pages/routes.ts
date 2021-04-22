@@ -4,7 +4,8 @@ enum Routes {
   REGISTER = '/register',
   COUNTER = '/counter',
   UNMASK = '/unmask',
-  NEWS = '/news'
+  NEWS = '/news',
+  SEARCH = '/search'
 }
 
 export enum RoutesNames {
@@ -12,7 +13,8 @@ export enum RoutesNames {
   LOGIN = 'LOGIN',
   REGISTER = 'REGISTER',
   UNMASK = 'UNMASK!',
-  NEWS = 'NEWS'
+  NEWS = 'NEWS',
+  SEARCH = 'SEARCH',
 }
 
 
