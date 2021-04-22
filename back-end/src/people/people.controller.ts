@@ -19,6 +19,7 @@ import RequestWithUser from '../auth/requestWithUser.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { extname } from 'path';
+import { of } from 'rxjs';
 
 @Controller('api/uploading_people')
 export class PeopleController {
@@ -33,11 +34,10 @@ export class PeopleController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
-      console.log('tut');
       console.log(createPeopleDto);
-      const user_id = 2//request.user.id;
-      console.log(`${file.path}`);
-      await this.PeopleService.create(createPeopleDto, user_id, `${file.path}`);
+      const user_id = 2; //request.user.id;
+      console.log(file);
+      await this.PeopleService.create(createPeopleDto, user_id, file.filename);
       return { message: 'ok' };
     } catch (e) {
       console.log(e);
@@ -56,6 +56,6 @@ export class PeopleController {
 
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {
-    res.sendFile(fileId, { root: 'Photo' });
+    return of(res.sendFile(fileId, { root: 'Photo' }));
   }
 }
