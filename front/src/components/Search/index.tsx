@@ -38,7 +38,7 @@ const theme = createMuiTheme({
 });
 
 
-const UnmaskForm: React.FC  = () => {
+const SearchForm: React.FC  = () => {
     const First_Name = useAppSelector(state => state.unmaskForm.First_Name);
     const Middle_Name = useAppSelector(state => state.unmaskForm.Middle_Name);
     const Last_Name = useAppSelector(state => state.unmaskForm.Last_Name);
@@ -112,7 +112,4 @@ const UnmaskForm: React.FC  = () => {
     )
 }
 
-//() => {
-//    dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
-
-export default UnmaskForm;
+export default SearchForm;

@@ -9,6 +9,7 @@ import {Register} from "./Register";
 import News from './News';
 import {Unmask} from "./UnmaskForm";
 import {ResultsPage} from "./Results";
+import {Search} from "./Search";
 
 export const Router: React.FC = () => {
   return(
@@ -20,7 +21,8 @@ export const Router: React.FC = () => {
           <Route exact path={Routes.NEWS} component={News}/>
           <Route exact path={Routes.REGISTER} component={Register}/>
           <Route exact path={Routes.UNMASK} component={Unmask}/>
-          <Route path={`/bastards/:First/:Middle/:Last`} component={ResultsPage} />
+          <Route path={`/bastards/:First_Name/:Middle_Name/:Last_Name`} component={ResultsPage} />
+          <Route exact path={Routes.SEARCH} component={Search}/>
         </Switch>
       </React.Suspense>
     </BrowserRouter>
