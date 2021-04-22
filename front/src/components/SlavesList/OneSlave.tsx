@@ -15,6 +15,9 @@ export interface IProps {
   Middle_Name: string;
   Last_Name: string;
   Description: string;
+  user_id: number;
+  id: number;
+  Photo: string;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.2rem'
   }
 }));
+
 
 const OneSlave: React.FC<IProps> = (props) => {
   const classes = useStyles();
@@ -77,3 +81,4 @@ const OneSlave: React.FC<IProps> = (props) => {
 }
 
 export default OneSlave;
+

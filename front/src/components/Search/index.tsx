@@ -39,9 +39,9 @@ const theme = createMuiTheme({
 
 
 const SearchForm: React.FC  = () => {
-    const First_Name = useAppSelector(state => state.unmaskForm.First_Name);
-    const Middle_Name = useAppSelector(state => state.unmaskForm.Middle_Name);
-    const Last_Name = useAppSelector(state => state.unmaskForm.Last_Name);
+    const First_Name = useAppSelector(state => state.searchForm.First_Name);
+    const Middle_Name = useAppSelector(state => state.searchForm.Middle_Name);
+    const Last_Name = useAppSelector(state => state.searchForm.Last_Name);
     const dispatch = useAppDispatch();
     const history = useHistory();
     const classes = useStyles();
