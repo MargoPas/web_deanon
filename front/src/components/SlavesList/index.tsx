@@ -1,9 +1,19 @@
 import React from 'react';
 
-import {IProps as OneSlave} from './OneSlave';
+import OneSlave from './OneSlave';
 
 interface IProps {
-  slavesList: Array<OneSlave>
+  slavesList: Array<Slave>
+}
+
+interface Slave {
+  First_Name: string;
+  Middle_Name: string;
+  Last_Name: string;
+  Description: string;
+  user_id: number;
+  id: number;
+  Photo: string;
 }
 
 const SlavesList: React.FC<IProps> = (props) => {
@@ -11,7 +21,11 @@ const SlavesList: React.FC<IProps> = (props) => {
     <div>
       {props.slavesList.map(
         (slaves) =>
-          <div>{slaves}</div>
+          <div>
+            <OneSlave First_Name={slaves.First_Name} Middle_Name={slaves.Middle_Name}
+            Last_Name={slaves.Last_Name} Description={slaves.Description} id={slaves.id} Photo={slaves.Photo}
+            user_id={slaves.user_id}/>
+          </div>
       )}
     </div>
   )

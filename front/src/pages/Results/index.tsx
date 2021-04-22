@@ -14,7 +14,7 @@ export const ResultsPage: React.FC<IProps> = (props) => {
     const [bastards, setBastards] = useState([]);
     useEffect(() => {
         fetch('/api/uploading_people/find_people', {
-            method: 'GET',
+            method: 'POST',
             body: JSON.stringify({ First_Name: props.First_Name, Middle_Name: props.Middle_Name, Last_Name: props.Last_Name}),
             headers: {
                 'Content-Type': 'application/json',
