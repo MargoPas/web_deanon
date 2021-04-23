@@ -2,7 +2,6 @@ import * as React from 'react';
 import NavBar from "../../components/NavBar";
 import {useEffect, useState} from "react";
 import SlavesList from "../../components/SlavesList";
-import {RouteProps} from 'react-router';
 import { RouteComponentProps } from 'react-router-dom';
 interface IProps {
     First_Name: string,
@@ -28,7 +27,6 @@ export const ResultsPage: React.FC<RouteComponentProps<IProps>> = (props) => {
                 }
             });
     },[]);
-    console.log(props.match.params);
     return(
         <div>
             <NavBar/>
