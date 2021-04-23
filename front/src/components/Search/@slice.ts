@@ -29,10 +29,14 @@ export const searchFormSlice = createSlice({
         changeLast: (state, action:PayloadAction<string>) => {
             state.Last_Name = action.payload
         },
-
+        clearState: (state) => {
+            state.First_Name = '';
+            state.Middle_Name = '';
+            state.Last_Name = '';
+        }
     },
 })
 
-export const { changeFirst, changeMiddle, changeLast } = searchFormSlice.actions;
+export const { changeFirst, changeMiddle, changeLast, clearState } = searchFormSlice.actions;
 
 export default searchFormSlice.reducer

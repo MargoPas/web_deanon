@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
@@ -17,7 +18,7 @@ export interface IProps {
   Description: string;
   user_id: number;
   id: number;
-  Photo: string;
+  Photo: any;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     top: 60,
     margin: 40,
     maxWidth: 800,
+  },
+  media: {
+    height: 0,
+    paddingTop: '56%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -56,6 +61,7 @@ const OneSlave: React.FC<IProps> = (props) => {
   return (
       <Card className={'article'}>
         <CardHeader className={classes.header} title={First_Name + ' ' + Middle_Name + ' ' + Last_Name}/>
+        <img height={70} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
         <CardActions disableSpacing>
           <IconButton
               className={clsx(classes.expand, {
