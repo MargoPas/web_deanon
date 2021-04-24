@@ -26,16 +26,6 @@ interface Slave {
   Photo: any;
 }
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: 'white',
-        },
-        secondary: {
-            main: purple[500],
-        },
-    },
-});
 
 const SlavesList: React.FC<IProps> = (props) => {
     const [isEmpty, setIsEmpty] = useState(true);
