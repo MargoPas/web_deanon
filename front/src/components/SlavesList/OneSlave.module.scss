@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import 'src/_variables';
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+.head {
+  font-family: "Dancing Script", monospace;
+  margin-left: 30px;
+  margin-top: 30px;
+  font-size: 50px;
+}
+
+.hat {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+#framy {
+
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  background-color: white;
+}
+#framy:hover {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.6);
+}
+.frame {
+  margin-bottom: 30px;
+  background-color: $dark-grey;
+  padding-top: 20px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  color: white;
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
+}
+.typography {
+  font-family: "Libre Baskerville", serif;
+  font-size: large;
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import s from './Search.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeFirst, changeLast, changeMiddle } from './@slice';
+import {changeFirst, changeLast, changeMiddle, clearState} from './@slice';
 import {useEffect} from "react";
 import {useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
@@ -46,8 +46,10 @@ const SearchForm: React.FC  = () => {
     const history = useHistory();
     const classes = useStyles();
 
+
     function findPerson(first: string, middle: string, last: string) {
-        history.push(`/bastards/${first}/${middle}/${last}`)
+        history.push(`/bastards/${first}/${middle}/${last}`);
+        dispatch(clearState());
     }
 
     return (
