@@ -41,9 +41,9 @@ const OneSlave: React.FC<IProps> = (props) => {
           <Avatar className={classes.icon} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
         </div>
         <CardContent>
-          <Typography className={"typ"} paragraph={true}>
+          <Typography paragraph={true}>
             {Description.split("\n").map((i, key) => {
-              return <p key={key}>{i}</p>
+              return <p className={s.typography} key={key}>{i}</p>
             })}
           </Typography>
         </CardContent>
