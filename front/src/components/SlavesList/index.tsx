@@ -3,7 +3,7 @@ import s from './SlavesList.module.scss'
 import OneSlave from './OneSlave';
 import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 import {createMuiTheme} from "@material-ui/core/styles";
-import {purple, red} from "@material-ui/core/colors";
+import {pink, purple, red} from "@material-ui/core/colors";
 import {ThemeProvider} from "@material-ui/styles";
 
 interface IProps {
@@ -42,7 +42,7 @@ const SlavesList: React.FC<IProps> = (props) => {
                     We haven't find this person in our database. But we sure you can tell us something interesting about him ;)
                 </p>
 
-                <EmojiNatureIcon color={'primary'} className={s.icon}/>
+                <EmojiNatureIcon style={{fontSize: 70, color: pink[500]}} color={'primary'} className={s.icon}/>
 
             </div> :
             <div id={s.mainy}>
@@ -53,8 +53,8 @@ const SlavesList: React.FC<IProps> = (props) => {
                                   Last_Name={slaves.Last_Name} Description={slaves.Description} id={slaves.id} Photo={slaves.Photo}
                                   user_id={slaves.user_id}/>
                     </div>
-            )}
-        </div>}
+                )}
+            </div>}
     </div>
   )
 }
