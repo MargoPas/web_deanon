@@ -3,40 +3,28 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import clsx from "clsx";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import Collapse from "@material-ui/core/Collapse";
 import {makeStyles} from "@material-ui/core/styles";
-
+import {Avatar} from "@material-ui/core";
+import s from "./OneSlave.module.scss"
 export interface IProps {
   First_Name: string;
   Middle_Name: string;
   Last_Name: string;
   Description: string;
+  user_id: number;
+  id: number;
+  Photo: any;
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    top: 60,
-    margin: 40,
-    maxWidth: 800,
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  header: {
-    fontSize: '1.2rem'
+  icon: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+
   }
 }));
+
+
 
 const OneSlave: React.FC<IProps> = (props) => {
   const classes = useStyles();
@@ -45,35 +33,25 @@ const OneSlave: React.FC<IProps> = (props) => {
   let Last_Name = props.Last_Name;
   let Description = props.Description;
 
-  const [expanded, setExpanded] = useState(false);
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  }
   return (
-      <Card className={'article'}>
-        <CardHeader className={classes.header} title={First_Name + ' ' + Middle_Name + ' ' + Last_Name}/>
-        <CardActions disableSpacing>
-          <IconButton
-              className={clsx(classes.expand, {
-                [classes.expandOpen]: expanded,
-              })}
-              onClick={handleExpandClick}
-              aria-expanded={expanded}
-              aria-label={'show more'}>
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions>
-        <Collapse in={expanded} timeout={"auto"} unmountOnExit>
-          <CardContent>
-            <Typography className={"typ"} paragraph={true}>
-              {Description.split("\n").map((i, key) => {
-                return <p key={key}>{i}</p>
-              })}
-            </Typography>
-          </CardContent>
-        </Collapse>
-      </Card>
+      <div id={s.framy}>
+        <div className={s.frame}>
+        <div className={s.hat}>
+          <p className={s.head}>{First_Name + ' ' + Middle_Name + ' ' + Last_Name}</p>
+          <Avatar className={classes.icon} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
+        </div>
+        <CardContent>
+          <Typography paragraph={true}>
+            {Description.split("\n").map((i, key) => {
+              return <p className={s.typography} key={key}>{i}</p>
+            })}
+          </Typography>
+        </CardContent>
+        </div>
+      </div>
+
   );
 }
 
 export default OneSlave;
+

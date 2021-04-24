@@ -1,0 +1,32 @@
+@import 'src/_variables';
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $dark-grey;
+}
+
+#mainy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  width: 800px;
+  margin: 10px;
+}
+.message {
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 50px;
+  font-family: "Dancing Script", monospace;
+  text-align: center;
+}
+.empty {
+  display: flex;
+}
+.icon {
+  font-size: 70px;
+}

@@ -18,8 +18,8 @@ const NavBar: React.FC = () => {
           <Link className={s.appbarLink} to={Routes.ROOT}>
             {RoutesNames.ROOT}
           </Link>
-          <Link className={s.appbarLink} to={Routes.NEWS}>
-            {RoutesNames.NEWS}
+          <Link className={s.appbarLink} to={Routes.SEARCH}>
+            {RoutesNames.SEARCH}
           </Link>
           <Link className={s.appbarLink} to={Routes.LOGIN}>
             {RoutesNames.LOGIN}

@@ -40,15 +40,9 @@ export const unmaskPerson = createAsyncThunk(
         form.append('Last_Name', data.Last_Name)
         form.append('Description', data.Description)
         form.append('Photo', data.Photo)
-        const postOptions = {
-            body: form,
-            method: 'POST',
-            mode: "cors",
-            referrerPolicy: "unsafe-url"
-        };
         try {
             const response = await fetch('/api/uploading_people/create',  {
-                method: 'Post',
+                method: 'POST',
                 body: form,
             });
             if(!response.ok) {
