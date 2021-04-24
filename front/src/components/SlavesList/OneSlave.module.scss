@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
-
-.article {
-  color: white;
-}
-
+@import 'src/_variables';
 .head {
   font-family: "Dancing Script", monospace;
   margin-left: 30px;
@@ -11,6 +7,33 @@
   font-size: 50px;
 }
 
-#frame {
+.hat {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+#framy {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  background-color: white;
+}
+.frame {
+  margin-bottom: 30px;
+  background-color: $dark-grey;
+  padding-top: 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  color: white;
+  -webkit-transform: rotate(5deg);
+  -moz-transform: rotate(5deg);
+  -o-transform: rotate(5deg);
+  -ms-transform: rotate(5deg);
+  transform: rotate(5deg);
 }

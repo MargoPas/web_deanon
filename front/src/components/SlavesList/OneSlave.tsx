@@ -17,30 +17,10 @@ export interface IProps {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    top: 60,
-    margin: 40,
-    maxWidth: 800,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56%'
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-
   icon: {
-    marginLeft: 10,
     width: theme.spacing(20),
     height: theme.spacing(20),
+
   }
 }));
 
@@ -54,18 +34,22 @@ const OneSlave: React.FC<IProps> = (props) => {
   let Description = props.Description;
 
   return (
-      <div id={s.frame}>
-      <div className={s.article}>
-        <p className={s.head}>{First_Name + ' ' + Middle_Name + ' ' + Last_Name}</p>
-        <Avatar className={classes.icon} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
+      <div id={s.framy}>
+        <div className={s.frame}>
+        <div className={s.hat}>
+          <p className={s.head}>{First_Name + ' ' + Middle_Name + ' ' + Last_Name}</p>
+          <Avatar className={classes.icon} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
+        </div>
         <CardContent>
           <Typography className={"typ"} paragraph={true}>
-              {Description.split("\n").map((i, key) => {
-                return <p key={key}>{i}</p>
-              })}
+            {Description.split("\n").map((i, key) => {
+              return <p key={key}>{i}</p>
+            })}
           </Typography>
         </CardContent>
-      </div></div>
+        </div>
+      </div>
+
   );
 }
 
