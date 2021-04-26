@@ -43,7 +43,6 @@ const SlavesList: React.FC<IProps> = (props) => {
                 </p>
 
                 <EmojiNatureIcon style={{fontSize: 70, color: pink[500]}} color={'primary'} className={s.icon}/>
-
             </div> :
             <div id={s.mainy}>
             {props.slavesList.map(
