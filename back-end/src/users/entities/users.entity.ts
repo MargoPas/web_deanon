@@ -1,4 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { People } from '../../people/entities/people.entity';
+import { JoinColumn } from 'typeorm/browser';
+import { votes } from '../../vote/entities/voting.entity';
 
 @Entity({
   name: 'users',
@@ -23,4 +33,10 @@ export class Users {
 
   @Column()
   role: string;
+
+  @OneToMany(() => People, (people) => people.id)
+  people: People[];
+
+  @OneToOne(() => votes, (votes) => votes.people_id)
+  votes: votes;
 }
