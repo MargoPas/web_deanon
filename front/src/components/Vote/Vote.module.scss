@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.h2 {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Dancing Script", monospace;
+  font-size: 40px;
+}
+
+.root {
+  width: 900px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.hat {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+}

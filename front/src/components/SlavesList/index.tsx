@@ -2,18 +2,11 @@ import React, {useState} from 'react';
 import s from './SlavesList.module.scss'
 import OneSlave from './OneSlave';
 import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
-import {createMuiTheme} from "@material-ui/core/styles";
 import {pink, purple, red} from "@material-ui/core/colors";
-import {ThemeProvider} from "@material-ui/styles";
+
 
 interface IProps {
   slavesList: Array<Slave>
-}
-
-interface Request {
-  First_Name: string;
-  Middle_Name: string;
-  Last_Name: string;
 }
 
 interface Slave {
@@ -43,7 +36,6 @@ const SlavesList: React.FC<IProps> = (props) => {
                 </p>
 
                 <EmojiNatureIcon style={{fontSize: 70, color: pink[500]}} color={'primary'} className={s.icon}/>
-
             </div> :
             <div id={s.mainy}>
             {props.slavesList.map(
