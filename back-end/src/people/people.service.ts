@@ -14,7 +14,12 @@ export class PeopleService {
   ) {}
 
   async create(CreatePeopleDto: CreatePeopleDto, user_id, file) {
-    const photo_url = await FileService.createFile(file);
+    let photo_url;
+    if (file != undefined) {
+      photo_url = await FileService.createFile(file);
+    } else {
+      photo_url = null;
+    }
     const peopledto = {
       ...CreatePeopleDto,
       user_id: user_id,
@@ -28,5 +33,9 @@ export class PeopleService {
 
   async findAll(FindPeopleDto: FindPeopleDto) {
     return await this.PeopleRepository.find(FindPeopleDto);
+  }
+
+  async return_all() {
+    return await this.PeopleRepository.find();
   }
 }
