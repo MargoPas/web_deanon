@@ -1,10 +1,22 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {fetchData} from "../../utils/API";
-import {LoginFormState, Response} from "../Login/@slice";
+import { Response} from "../Login/@slice";
 
 
 interface Form {
     people_id: number;
+}
+
+
+export interface voteFormState {
+    people_id: number,
+    haveVoted: boolean,
+    isAuth: boolean,
+}
+const initialState: voteFormState = {
+    people_id: -1,
+    haveVoted: false,
+    isAuth: false,
 }
 
 export const voteForPerson = createAsyncThunk(
@@ -19,7 +31,7 @@ export const voteForPerson = createAsyncThunk(
             referrerPolicy: "unsafe-url"
         };
         try {
-            const response = await fetchData('/api/voteForPerson/', postOptions);
+            const response = await fetchData('/api/voting/create', postOptions);
             if(!response.ok) {
                 console.log(response.ok);
                 return thunkAPI.rejectWithValue(response.ok);
@@ -34,14 +46,6 @@ export const voteForPerson = createAsyncThunk(
         }
     })
 
-export interface voteFormState {
-    people_id: number,
-    haveVoted: boolean,
-}
-const initialState: voteFormState = {
-    people_id: -1,
-    haveVoted: false,
-}
 
 export const voteFormSlice = createSlice({
     name: 'vote',
@@ -51,7 +55,9 @@ export const voteFormSlice = createSlice({
         setVote: (state, action:PayloadAction<number>) => {
             state.people_id = action.payload
         },
-
+        changeIsAuth: (state) => {
+            state.isAuth = !state.isAuth;
+        },
         clearState: (state) => {
             state.people_id = -1;
         },
@@ -60,17 +66,16 @@ export const voteFormSlice = createSlice({
         builder.addCase(voteForPerson.fulfilled, (state, action) => {
             state.people_id = -1;
             state.haveVoted = true
-            //localStorage.setItem('token', action.payload.message.token);   это для жвт было, а мы решили кукать
         });
         builder.addCase(voteForPerson.rejected, (state, action) => {
             state.people_id = -1;
             state.haveVoted = false;
-            alert("Something wrong happened during login")
+            alert("Something wrong happened during voting")
         });
     }
 })
 
-export const { setVote, clearState } = voteFormSlice.actions;
+export const { setVote, clearState, changeIsAuth } = voteFormSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 //export const selectLogin = (state: RootState) => state.loginForm.login;
