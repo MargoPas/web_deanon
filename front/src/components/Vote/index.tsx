@@ -10,8 +10,8 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useHistory} from "react-router-dom";
 import {unmaskPerson} from "../UnmaskForm/@slice";
 import {Button} from "@blueprintjs/core";
-import {setVote, voteForPerson} from "./@slice";
-
+import {setVote, changeIsAuth, voteForPerson} from "./@slice";
+import {fetchData} from "../../utils/API";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,8 +38,9 @@ const Vote: React.FC<IProps> = (props) => {
     const history = useHistory();
     const people_id = useAppSelector(state => state.voteForm.people_id);
     let haveVoted = useAppSelector(state => state.voteForm.haveVoted);
-
+    let isAuth = useAppSelector(state => state.voteForm.isAuth);
     const classes = useStyles();
+
 
     useEffect(()=> {
         if(haveVoted) {

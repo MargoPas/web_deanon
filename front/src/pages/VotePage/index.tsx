@@ -12,7 +12,7 @@ interface IProps {
 export const VotePage: React.FC = () => {
     const [bastards, setBastards] = useState([]);
     useEffect(() => {
-        fetch('/api/uploading_people/find_people/for_voting', {
+        fetch('/api/uploading_people/all_people', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export const VotePage: React.FC = () => {
                     setBastards(data);
                 }
             });
-    },[]);
+    },[bastards]);
     return(
         <div>
             <NavBar/>

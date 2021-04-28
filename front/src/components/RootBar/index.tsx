@@ -53,7 +53,6 @@ const RootBar: React.FC = () => {
             })
             .then(data => {
                 console.log(data);
-
             });
     }
     useEffect(()=>{GetIsAuth();}, [isAuth]);

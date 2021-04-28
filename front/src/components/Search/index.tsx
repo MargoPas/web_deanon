@@ -39,10 +39,6 @@ const theme = createMuiTheme({
     },
 });
 
-interface Response {
-    //type: string;
-    message: string;
-}
 const SearchForm: React.FC  = () => {
     const First_Name = useAppSelector(state => state.searchForm.First_Name);
     const Middle_Name = useAppSelector(state => state.searchForm.Middle_Name);
@@ -50,19 +46,24 @@ const SearchForm: React.FC  = () => {
     const dispatch = useAppDispatch();
     const history = useHistory();
     const classes = useStyles();
-    const [voted, setVoted] = useState(true);
+    const [voted, setVoted] = useState(true);  // true значит ссылочки не будет
 
     function haveVoted() {
-        fetchData('/api/have_voted', {
+        fetchData('/api/voting/voted', {
             method: 'GET',
             credentials: 'include',
         })
-            .then(response => {return response.json();})
+            .then(response => {
+                if(!response.ok) {
+                    setVoted(true);  // опять-таки, если не авторизовался, то не будет ссылки
+                }
+                return response.json();
+            })
             .then(data => {
-                if(data.message == 'no' && voted) {
+                if(data.message == 'no votes' && voted) {
                     setVoted(false);
                 }
-                else {setVoted(true);}
+                else if(data.message == 'voted') {setVoted(true);}
             })
     }
 
