@@ -29,7 +29,8 @@ interface Slave {
     First_Name: string;
     Middle_Name: string;
     Last_Name: string;
-    people_id: number;
+    id: number;
+    Description: string;
     Photo: any;
 }
 
@@ -56,7 +57,7 @@ const Vote: React.FC<IProps> = (props) => {
                 {props.slavesList.map(
                     (slaves) =>
                         <div className={s.hat}>
-                            <input type={'radio'} value={slaves.people_id} onClick={() => {dispatch(setVote(slaves.people_id));}}/>
+                            <input type={'radio'} value={slaves.id} onClick={() => {dispatch(setVote(slaves.id));}}/>
                             <p>
                                 {slaves.First_Name + ' ' + slaves.Middle_Name + ' ' + slaves.Last_Name}
                             </p>
