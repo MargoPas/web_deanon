@@ -2,7 +2,6 @@ enum Routes {
   ROOT = '/',
   LOGIN = '/login',
   REGISTER = '/register',
-  COUNTER = '/counter',
   UNMASK = '/unmask',
   SEARCH = '/search',
   VOTE = '/vote',

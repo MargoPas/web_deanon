@@ -4,7 +4,6 @@ import Routes from "./routes";
 
 import {Root} from "./Root";
 import {Login} from "./Login";
-import {CounterPage} from './Counter';
 import {Register} from "./Register";
 import {Unmask} from "./UnmaskForm";
 import {ResultsPage} from "./Results";
