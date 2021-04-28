@@ -15,6 +15,7 @@ export class VoteService {
 
   async create_vote(createVoteDto: CreateVoteDto) {
     try {
+      console.log(createVoteDto);
       const vote = await this.VotesRepository.create(createVoteDto);
       await this.VotesRepository.save(vote);
     } catch (e) {

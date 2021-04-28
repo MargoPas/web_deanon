@@ -25,7 +25,7 @@ import { of } from 'rxjs';
 export class PeopleController {
   constructor(private readonly PeopleService: PeopleService) {}
 
-  //@UseGuards(JwtAuthenticationGuard)
+  @UseGuards(JwtAuthenticationGuard)
   @UseInterceptors(FileInterceptor('Photo', { dest: './Photo' }))
   @Post('/create')
   async createPeople(
@@ -34,7 +34,8 @@ export class PeopleController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
-      const user_id = 2; //request.user.id;
+      console.log(request.user);
+      const user_id = request.user.id;
       if (file != undefined) {
         await this.PeopleService.create(
           createPeopleDto,
