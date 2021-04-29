@@ -25,7 +25,7 @@ import { of } from 'rxjs';
 export class PeopleController {
   constructor(private readonly PeopleService: PeopleService) {}
 
-  //@UseGuards(JwtAuthenticationGuard)
+  @UseGuards(JwtAuthenticationGuard)
   @UseInterceptors(FileInterceptor('Photo', { dest: './Photo' }))
   @Post('/create')
   async createPeople(
@@ -34,10 +34,17 @@ export class PeopleController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
-      console.log(createPeopleDto);
-      const user_id = 2; //request.user.id;
-      console.log(file);
-      await this.PeopleService.create(createPeopleDto, user_id, file.filename);
+      console.log(request.user);
+      const user_id = request.user.id;
+      if (file != undefined) {
+        await this.PeopleService.create(
+          createPeopleDto,
+          user_id,
+          file.filename,
+        );
+      } else {
+        await this.PeopleService.create(createPeopleDto, user_id, null);
+      }
       return { message: 'ok' };
     } catch (e) {
       console.log(e);
@@ -57,5 +64,11 @@ export class PeopleController {
   @Get('photo/:fileId')
   async serveAvatar(@Param('fileId') fileId, @Res() res): Promise<any> {
     return of(res.sendFile(fileId, { root: 'Photo' }));
+  }
+
+  @UseGuards(JwtAuthenticationGuard)
+  @Get('all_people')
+  async all_people() {
+    return this.PeopleService.return_all();
   }
 }

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchData } from '../../utils/API'
+import {Response} from "../Login/@slice";
 
 
 // Define a type for the slice state
@@ -37,6 +38,8 @@ export const searchFormSlice = createSlice({
     },
 })
 
-export const { changeFirst, changeMiddle, changeLast, clearState } = searchFormSlice.actions;
+
+
+export const { changeFirst, changeMiddle, changeLast, clearState} = searchFormSlice.actions;
 
 export default searchFormSlice.reducer

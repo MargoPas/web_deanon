@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+.h2 {
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-family: "Dancing Script", monospace;
+  font-size: 40px;
+  text-align: center;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+.h2_1 {
+  position: fixed;
+  right: 80px;
+  top: 600px;
+  text-align: center;
+  color: white;
+  font-family: "Dancing Script", monospace;
+  font-size: 40px;
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+}
+.root {
+  width: 900px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 80px;
+}
+
+.hat {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  margin: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.hat:hover {
+  //-webkit-transform: scale(1.2);
+  //-ms-transform: scale(1.2);
+  //transform: scale(1.2);
+  // box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
+  transition: 0.5s;
+  transform: translateX(-5px);
+  -webkit-transform: translateX(-5px);
+  box-shadow:
+    1px 1px 10px #f50093,
+    2px 2px 10px #f50093,
+    3px 3px 10px #f50093,
+    4px 4px 10px #f50093,
+    5px 5px 10px #f50093;
+}
+.hat:not(:hover) {
+  transition: 0.5s;
+}
+.title {
+  font-size: 40px;
+  color: white;
+  font-family: "Dancing Script", monospace;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#rooot {
+  right: 80px;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  justify-content: center;
+  position: relative;
+  left: 100px;
+  z-index: 0;
+}
+.button {
+  position: relative;
+  left: 150px;
+  display: flex;
+  justify-content: center;
+  width: 200px;
+  margin-top: 20px;
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import s from './LoginForm.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeLogin, changePassword, loginUser, changeImageTest } from './@slice';
+import { changeLogin, changePassword, loginUser} from './@slice';
 import {useEffect} from "react";
 import {clearState} from './@slice'
 import {useHistory} from 'react-router-dom'
