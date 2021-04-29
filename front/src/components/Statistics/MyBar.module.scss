@@ -2,7 +2,22 @@
 .root {
   position: absolute;
   left: 400px;
+  display: flex;
   justify-content: center;
+  flex-direction: column;
   width: 800px;
+  height: 900px;
+  font-family: "Dancing Script", monospace;
+  font-size: 40px;
+}
+.h1 {
+  font-family: "Dancing Script", monospace;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+.chart {
+  position: relative;
+  left: 80px;
   height: 500px;
 }

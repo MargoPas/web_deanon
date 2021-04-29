@@ -4,22 +4,22 @@ import MyBar from "../../components/Statistics";
 
 let data = [
     {
-        'personId': 1,
-        'votes': 5,
+        'last_name': 1,
+        'count': 5,
     },
     {
-        'personId': 2,
-        'votes': 2,
+        'last_name': 2,
+        'count': 2,
     },
     {
-        'personId': 3,
-        'votes': 10
+        'last_name': 3,
+        'count': 10
     }
 ]
 
 export const Stat: React.FC = () => (
     <div>
         <NavBar/>
-        <MyBar dataPoints={data}/>
+        <MyBar/>
     </div>
 )

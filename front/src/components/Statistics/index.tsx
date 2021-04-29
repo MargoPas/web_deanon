@@ -5,8 +5,8 @@ interface IDataPoints {
     dataPoints: Array<OneColumn>;
 }
 interface OneColumn {
-    last_name: number,
-    count: number,
+    last__name: string,
+    votes: number,
 }
 interface ArrayOfPhoto {
     photos: Array<Photos>;
@@ -14,23 +14,59 @@ interface ArrayOfPhoto {
 interface Photos {
     photo: string;
 }
+interface ArrBackResp {
+    array: Array<BaskResponse>,
+}
+interface BaskResponse {
+    people_id_id: number,
+    count: string,
+    photo: string,
+    description: string,
+    first__name: string,
+    middle__name: string,
+    last__name: string,
+}
+function getDataForChart(data: Array<BaskResponse>) {
+    let array_for_chart: Array<OneColumn> = [];
+    data.map((one_json) => {
+        array_for_chart.push({
+            'last__name': one_json.last__name,
+            'votes': Number(one_json.count)
+        })
+    })
+    return array_for_chart;
+}
 
-const MyBar: React.FC<IDataPoints> = (data) => {
+const MyBar: React.FC = () => {
     const [bastards, setBastards] = useState([]);
     useEffect(() => {
-
-    })
+        fetch('/api/voting/list_with_votes', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then((async response => {return await response.json() as Array<BaskResponse>;}))
+            .then(data => {
+                if(bastards.length !== data.length) {
+                    // @ts-ignore
+                    setBastards(data);
+                }
+            });
+    },[bastards]);
     return (
         <div className={s.root}>
+            <h1 className={s.h1}>Statistics of votes :*</h1>
+            <div className={s.chart}>
             <ResponsiveBar
-                data={(data as IDataPoints).dataPoints}
-                keys={['count']}
-                indexBy={'last_name'}
+                data={getDataForChart(bastards)}
+                keys={['votes']}
+                indexBy={'last__name'}
                 margin={{top: 50, right: 130, bottom: 50, left: 60}}
                 padding={0.3}
                 valueScale={{type: 'linear'}}
                 indexScale={{type: 'band', round: true}}
-                colors={{scheme: 'nivo'}}
+                colors={{scheme: 'purple_red'}}
                 defs={[
                     {
                         id: 'dots',
@@ -45,7 +81,7 @@ const MyBar: React.FC<IDataPoints> = (data) => {
                 fill={[
                     {
                         match: {
-                            id: 'count'
+                            id: 'votes'
                         },
                         id: 'dots'
                     },
@@ -54,7 +90,7 @@ const MyBar: React.FC<IDataPoints> = (data) => {
                 axisTop={null}
                 axisRight={null}
                 axisBottom={{
-                    tickSize: 5,
+                    tickSize: 10,
                     tickPadding: 5,
                     tickRotation: 0,
                     legend: 'person',
@@ -71,35 +107,13 @@ const MyBar: React.FC<IDataPoints> = (data) => {
                 }}
                 labelSkipWidth={12}
                 labelSkipHeight={12}
-                labelTextColor={{from: 'color', modifiers: [['darker', 1.6]]}}
-                legends={[
-                    {
-                        dataFrom: 'keys',
-                        anchor: 'bottom-right',
-                        direction: 'column',
-                        justify: false,
-                        translateX: 120,
-                        translateY: 0,
-                        itemsSpacing: 2,
-                        itemWidth: 100,
-                        itemHeight: 20,
-                        itemDirection: 'left-to-right',
-                        itemOpacity: 0.85,
-                        symbolSize: 20,
-                        effects: [
-                            {
-                                on: 'hover',
-                                style: {
-                                    itemOpacity: 1
-                                }
-                            }
-                        ]
-                    }
-                ]}
+                labelTextColor={{from: 'color', modifiers: [['darker', 0]]}}
+
                 animate={true}
                 motionStiffness={90}
                 motionDamping={15}
-            /></div>);
+            /></div>
+        </div>);
 }
 
 export default MyBar;
