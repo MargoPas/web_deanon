@@ -9,6 +9,7 @@ import {Unmask} from "./UnmaskForm";
 import {ResultsPage} from "./Results";
 import {Search} from "./Search";
 import {VotePage} from "./VotePage";
+import {Stat} from "./Statistics";
 
 export const Router: React.FC = (props) => {
   return(
@@ -22,6 +23,7 @@ export const Router: React.FC = (props) => {
           <Route path={`/bastards/:First_Name/:Middle_Name/:Last_Name`} component={ResultsPage}/>
           <Route exact path={Routes.SEARCH} component={Search}/>
           <Route exact path={Routes.VOTE} component={VotePage}/>
+          <Route exact path={'/stat'} component={Stat}/>
         </Switch>
       </React.Suspense>
     </BrowserRouter>

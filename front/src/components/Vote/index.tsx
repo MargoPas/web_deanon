@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import s from "../Vote/Vote.module.scss";
-import {Avatar, Radio} from "@material-ui/core";
+import {Avatar, FormControl, FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
 
 import {makeStyles} from "@material-ui/core/styles";
 import {clearState} from "../Login/@slice";
@@ -52,15 +52,11 @@ const Vote: React.FC<IProps> = (props) => {
             <h2 className={s.h2}>Here you go! Vote for worst of the worst ^*^</h2>
             <h2 className={s.h2_1}>U have only 1 chance ;)</h2>
             <div className={s.cards}>
+
                 {props.slavesList.map(
                     (slaves) =>
                         <label className={s.hat}>
-                            <Radio
-                                name={'la'}
-                                //value={slaves.id}
-                                onClick={() => {dispatch(setVote(slaves.id));}}
-                            />
-
+                            <input type={'radio'} name={'la'} value={slaves.id} onClick={() => {dispatch(setVote(slaves.id));}}/>
                             <p className={s.title}>
                                 {slaves.First_Name + ' ' + slaves.Middle_Name + ' ' + slaves.Last_Name}
                             </p>
