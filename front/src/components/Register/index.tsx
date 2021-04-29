@@ -7,7 +7,10 @@ import {useHistory} from 'react-router-dom';
 import {useEffect} from "react";
 import {clearState} from "./@slice";
 import {Box, makeStyles} from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 import TextField from "@material-ui/core/TextField";
+import {createMuiTheme} from "@material-ui/core/styles";
+import {purple, red} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +33,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     }
 }));
-
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: red[500],
+        },
+        secondary: {
+            main: purple[500],
+        },
+    },
+});
 
 const RegisterForm: React.FC  = () => {
   const login = useAppSelector(state => state.registerForm.login);
@@ -57,6 +69,7 @@ const RegisterForm: React.FC  = () => {
                   Sign up
               </Box>
               <form className={classes.form}>
+                  <ThemeProvider theme={theme}>
                   <TextField
                       variant={'outlined'}
                       margin={'normal'}
@@ -98,6 +111,7 @@ const RegisterForm: React.FC  = () => {
                       value={name}
                       onChange={(event) => dispatch(changeName(event.target.value))}
                   />
+                  </ThemeProvider>
                   <Button disabled={!(password && name && e_mail && login)}
                           icon="log-in" intent={'danger'} className={classes.submit} text="Войти" onClick={
                       () => dispatch(registerUser({login, password, e_mail, name}))
