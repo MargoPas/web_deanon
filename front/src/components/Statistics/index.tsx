@@ -1,6 +1,9 @@
 import {ResponsiveBar} from '@nivo/bar'
 import React, {useEffect, useState} from 'react'
 import s from './MyBar.module.scss'
+import {Avatar} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core/styles";
+import {setVote} from "../Vote/@slice";
 interface IDataPoints {
     dataPoints: Array<OneColumn>;
 }
@@ -8,14 +11,14 @@ interface OneColumn {
     last__name: string,
     votes: number,
 }
-interface ArrayOfPhoto {
-    photos: Array<Photos>;
-}
+const useStyles = makeStyles((theme) => ({
+    icon: {
+        width: theme.spacing(10),
+        height: theme.spacing(10),
+    }
+}));
 interface Photos {
     photo: string;
-}
-interface ArrBackResp {
-    array: Array<BaskResponse>,
 }
 interface BaskResponse {
     people_id_id: number,
@@ -30,15 +33,26 @@ function getDataForChart(data: Array<BaskResponse>) {
     let array_for_chart: Array<OneColumn> = [];
     data.map((one_json) => {
         array_for_chart.push({
-            'last__name': one_json.last__name,
+            'last__name': one_json.last__name + '(' + one_json.people_id_id + ')',
             'votes': Number(one_json.count)
-        })
+        });
     })
     return array_for_chart;
+}
+function getPhotos(data: Array<BaskResponse>) {
+    let array_of_photos: Array<Photos> = [];
+    data.map((one_json) => {
+        array_of_photos.push({
+            'photo': one_json.photo,
+        });
+        console.log(one_json.photo);
+    })
+    return array_of_photos;
 }
 
 const MyBar: React.FC = () => {
     const [bastards, setBastards] = useState([]);
+    const classes = useStyles();
     useEffect(() => {
         fetch('/api/voting/list_with_votes', {
             method: 'GET',
@@ -54,11 +68,20 @@ const MyBar: React.FC = () => {
                 }
             });
     },[bastards]);
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className={s.root}>
             <h1 className={s.h1}>Statistics of votes :*</h1>
             <div className={s.chart}>
             <ResponsiveBar
+                theme={{
+                    fontSize: 20,
+                    fontFamily: 'monospace',
+                    textColor: 'white',
+                }
+                }
                 data={getDataForChart(bastards)}
                 keys={['votes']}
                 indexBy={'last__name'}
@@ -93,26 +116,28 @@ const MyBar: React.FC = () => {
                     tickSize: 10,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'person',
                     legendPosition: 'middle',
-                    legendOffset: 32
                 }}
                 axisLeft={{
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'votes',
                     legendPosition: 'middle',
-                    legendOffset: -40
                 }}
                 labelSkipWidth={12}
                 labelSkipHeight={12}
                 labelTextColor={{from: 'color', modifiers: [['darker', 0]]}}
-
                 animate={true}
                 motionStiffness={90}
                 motionDamping={15}
-            /></div>
+            />
+            </div>
+            <div className={s.icons}>
+                {bastards.map(
+                    (slaves: Photos) =>
+                        <Avatar className={classes.icon} src={'http://' + slaves.photo} alt={'тут должно быть фото'}/>
+                    )}
+            </div>
         </div>);
 }
 
