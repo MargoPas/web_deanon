@@ -5,6 +5,7 @@ enum Routes {
   UNMASK = '/unmask',
   SEARCH = '/search',
   VOTE = '/vote',
+  STAT='/stat'
 }
 
 export enum RoutesNames {
@@ -14,6 +15,7 @@ export enum RoutesNames {
   REGISTER = 'REGISTER',
   UNMASK = 'UNMASK!',
   SEARCH = 'SEARCH',
+  STAT='STATISTICS',
 }
 
 
