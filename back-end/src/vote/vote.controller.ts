@@ -40,4 +40,14 @@ export class VoteController {
       return { message: 'not voted' };
     }
   }
+
+  @Get('list_with_votes')
+  async list(){
+    try{
+      return await this.voteService.users_with_votes();
+    }
+    catch (e) {
+      return e;
+    }
+  }
 }
