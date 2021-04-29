@@ -32,6 +32,7 @@ export class PeopleService {
   }
 
   async findAll(FindPeopleDto: FindPeopleDto) {
+    console.log(FindPeopleDto);
     return await this.PeopleRepository.find(FindPeopleDto);
   }
 

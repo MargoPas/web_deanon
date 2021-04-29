@@ -60,7 +60,7 @@ const SearchForm: React.FC  = () => {
                 return response.json();
             })
             .then(data => {
-                if(data.message == 'no votes' && voted) {
+                if(data.message == 'not voted' && voted) {
                     setVoted(false);
                 }
                 else if(data.message == 'voted') {setVoted(true);}
@@ -129,7 +129,7 @@ const SearchForm: React.FC  = () => {
                     />
                 </div>
                 <div className={s.right}>
-                    {voted ? <p>Wanna <Link to={Routes.VOTE}>
+                    {!voted ? <p>Wanna <Link to={Routes.VOTE}>
                         vote
                     </Link>?</p> :
                     <p>XXXX</p>}
