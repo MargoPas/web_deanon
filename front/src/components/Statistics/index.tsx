@@ -3,10 +3,9 @@ import React, {useEffect, useState} from 'react'
 import s from './MyBar.module.scss'
 import {Avatar} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import {setVote} from "../Vote/@slice";
-interface IDataPoints {
-    dataPoints: Array<OneColumn>;
-}
+import {pink} from "@material-ui/core/colors";
+import FilterVintageIcon from "@material-ui/icons/FilterVintage";
+
 interface OneColumn {
     last__name: string,
     votes: number,
@@ -39,16 +38,6 @@ function getDataForChart(data: Array<BaskResponse>) {
     })
     return array_for_chart;
 }
-function getPhotos(data: Array<BaskResponse>) {
-    let array_of_photos: Array<Photos> = [];
-    data.map((one_json) => {
-        array_of_photos.push({
-            'photo': one_json.photo,
-        });
-        console.log(one_json.photo);
-    })
-    return array_of_photos;
-}
 
 const MyBar: React.FC = () => {
     const [bastards, setBastards] = useState([]);
@@ -69,76 +58,79 @@ const MyBar: React.FC = () => {
             });
     },[bastards]);
     // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
-        <div className={s.root}>
+        <div className={s.rooot}><div className={s.root}>
             <h1 className={s.h1}>Statistics of votes :*</h1>
             <div className={s.chart}>
-            <ResponsiveBar
-                theme={{
-                    fontSize: 20,
-                    fontFamily: 'monospace',
-                    textColor: 'white',
-                }
-                }
-                data={getDataForChart(bastards)}
-                keys={['votes']}
-                indexBy={'last__name'}
-                margin={{top: 50, right: 130, bottom: 50, left: 60}}
-                padding={0.3}
-                valueScale={{type: 'linear'}}
-                indexScale={{type: 'band', round: true}}
-                colors={{scheme: 'purple_red'}}
-                defs={[
-                    {
-                        id: 'dots',
-                        type: 'patternDots',
-                        background: 'inherit',
-                        color: '#f50093',
-                        size: 4,
-                        padding: 1,
-                        stagger: true
+                <ResponsiveBar
+                    theme={{
+                        fontSize: 20,
+                        fontFamily: 'monospace',
+                        textColor: 'white',
                     }
-                ]}
-                fill={[
-                    {
-                        match: {
-                            id: 'votes'
+                    }
+                    data={getDataForChart(bastards)}
+                    keys={['votes']}
+                    indexBy={'last__name'}
+                    margin={{top: 50, right: 130, bottom: 50, left: 60}}
+                    padding={0.3}
+                    valueScale={{type: 'linear'}}
+                    indexScale={{type: 'band', round: true}}
+                    colors={{scheme: 'purple_red'}}
+                    defs={[
+                        {
+                            id: 'dots',
+                            type: 'patternDots',
+                            background: 'inherit',
+                            color: '#f50093',
+                            size: 4,
+                            padding: 1,
+                            stagger: true
+                        }
+                    ]}
+                    fill={[
+                        {
+                            match: {
+                                id: 'votes'
+                            },
+                            id: 'dots'
                         },
-                        id: 'dots'
-                    },
-                ]}
-                borderColor={{from: 'color', modifiers: [['darker', 1.6]]}}
-                axisTop={null}
-                axisRight={null}
-                axisBottom={{
-                    tickSize: 10,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legendPosition: 'middle',
-                }}
-                axisLeft={{
-                    tickSize: 5,
-                    tickPadding: 5,
-                    tickRotation: 0,
-                    legendPosition: 'middle',
-                }}
-                labelSkipWidth={12}
-                labelSkipHeight={12}
-                labelTextColor={{from: 'color', modifiers: [['darker', 0]]}}
-                animate={true}
-                motionStiffness={90}
-                motionDamping={15}
-            />
+                    ]}
+                    borderColor={{from: 'color', modifiers: [['darker', 1.6]]}}
+                    axisTop={null}
+                    axisRight={null}
+                    axisBottom={{
+                        tickSize: 10,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        legendPosition: 'middle',
+                    }}
+                    axisLeft={{
+                        tickSize: 5,
+                        tickPadding: 5,
+                        tickRotation: 0,
+                        legendPosition: 'middle',
+                    }}
+                    labelSkipWidth={12}
+                    labelSkipHeight={12}
+                    labelTextColor={{from: 'color', modifiers: [['darker', 0]]}}
+                    animate={true}
+                    motionStiffness={90}
+                    motionDamping={15}
+                />
             </div>
             <div className={s.icons}>
                 {bastards.map(
                     (slaves: Photos) =>
                         <Avatar className={classes.icon} src={'http://' + slaves.photo} alt={'тут должно быть фото'}/>
-                    )}
+                )}
             </div>
-        </div>);
-}
+        </div>
+            <FilterVintageIcon style={{fontSize: 40, color: pink[500]}} color={'primary'} className={s.flower}/>
+            <FilterVintageIcon style={{fontSize: 60, color: pink[500]}} color={'primary'} className={s.flower_1}/>
+            <FilterVintageIcon style={{fontSize: 30, color: pink[500]}} color={'primary'} className={s.flower_2}/>
+        </div>
 
+    );
+}
 export default MyBar;
