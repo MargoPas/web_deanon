@@ -77,13 +77,14 @@ const SearchForm: React.FC  = () => {
     return (
         <div className={s.root}>
             <div className={s.icon}>
-                <Icon icon={'star-empty'} intent={'danger'} iconSize={60}/>
+                <Icon icon={'star-empty'} intent={'warning'} iconSize={60}/>
             </div>
             <div className={s.icon3}>
-                <Icon icon={'star'} intent={'danger'} iconSize={40}/>
+                <Icon icon={'star'} intent={'warning'} iconSize={40}/>
             </div>
             <div id={s.mainy}>
                 <div className={s.left}>
+                    <div className={s.form}>
                     <ThemeProvider theme={theme}>
                         <TextField
                             variant={'outlined'}
@@ -121,22 +122,25 @@ const SearchForm: React.FC  = () => {
                         />
                     </ThemeProvider>
                     <Button disabled={!(Last_Name && First_Name && Middle_Name)}
-                            icon="draw" intent={'danger'}
-                            className={classes.submit} text="Отправить"
+                            icon="search" intent={'warning'}
+                            className={classes.submit} text="Искать"
                             onClick={() => {
                                 findPerson(First_Name, Middle_Name, Last_Name);
                             }}
-                    />
-                </div>
-                <div className={s.right}>
-                    {!voted ? <p>Wanna <Link to={Routes.VOTE}>
+                    /></div>
+                    {!voted ? <p className={s.p}>Also: wanna<Link to={Routes.VOTE}>
                         vote
                     </Link>?</p> :
-                    <p>XXXX</p>}
+                    <p className={s.p}>XOXO</p>}
+                </div>
+                <div className={s.right}>
+                    <p className={s.p}>Enter full name here</p>
+
+                    <img className={s.img} src={'arrow.png'} alt={'arrow image'}/>
                 </div>
             </div>
             <div className={s.icon2}>
-                <Icon icon={'star-empty'} intent={'danger'} iconSize={60}/>
+                <Icon icon={'star-empty'} intent={'warning'} iconSize={60}/>
             </div>
         </div>
     )

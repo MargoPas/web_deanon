@@ -6,8 +6,11 @@ import {useEffect} from "react";
 import {clearState} from './@slice'
 import {useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
-import {Box, makeStyles} from "@material-ui/core";
+import {Box, makeStyles, MuiThemeProvider} from "@material-ui/core";
 import {Button, Icon} from '@blueprintjs/core'
+import {createMuiTheme} from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import {purple, red} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -29,7 +32,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     }
 }));
-
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: red[500],
+        },
+        secondary: {
+            main: purple[500],
+        },
+    },
+});
 
 
 const LoginForm: React.FC  = () => {
@@ -55,6 +67,7 @@ const LoginForm: React.FC  = () => {
               <Box fontFamily={"Monospace"} fontSize={'h2.fontSize'} m={1}>
                   Sign in
               </Box>
+              <ThemeProvider theme={theme}>
               <form className={classes.form}>
                   <TextField
                       variant={'outlined'}
@@ -84,6 +97,7 @@ const LoginForm: React.FC  = () => {
                       () => dispatch(loginUser({login, password}))
                   }/>
               </form>
+              </ThemeProvider>
           </div>
       </div>
   )

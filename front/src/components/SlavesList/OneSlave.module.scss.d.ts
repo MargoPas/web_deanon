@@ -5,6 +5,7 @@ interface CssExports {
   'framy': string;
   'hat': string;
   'head': string;
+  'icon': string;
   'typography': string;
 }
 export const cssExports: CssExports;

@@ -3,6 +3,8 @@
 interface CssExports {
   'empty': string;
   'icon': string;
+  'icon_1': string;
+  'icon_2': string;
   'mainy': string;
   'message': string;
   'root': string;
