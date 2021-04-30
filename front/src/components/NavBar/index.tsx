@@ -10,7 +10,6 @@ interface IProps {
 }
 
 const NavBar: React.FC = () => {
-
   return (
     <div className={s.root}>
       <div className={s.grid}>
@@ -26,6 +25,9 @@ const NavBar: React.FC = () => {
           </Link>
           <Link className={s.appbarLink} to={Routes.REGISTER}>
             {RoutesNames.REGISTER}
+          </Link>
+          <Link className={s.appbarLink} to={Routes.STAT}>
+            {RoutesNames.STAT}
           </Link>
         </nav>
       </div>

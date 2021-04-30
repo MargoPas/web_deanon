@@ -10,3 +10,5 @@
         () => dispatch(loginUser({login, password}))
       }/>
     </div>
+
+    <input type={'radio'} name={'la'} value={slaves.id} onClick={() => {dispatch(setVote(slaves.id));}}/>
