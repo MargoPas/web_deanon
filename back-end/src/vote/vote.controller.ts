@@ -23,7 +23,7 @@ export class VoteController {
       await this.voteService.create_vote(dto);
       return { message: 'ok' };
     } catch (e) {
-      console.log(e)
+      console.log(e);
       return e;
     }
   }
@@ -42,11 +42,10 @@ export class VoteController {
   }
 
   @Get('list_with_votes')
-  async list(){
-    try{
+  async list() {
+    try {
       return await this.voteService.users_with_votes();
-    }
-    catch (e) {
+    } catch (e) {
       return e;
     }
   }

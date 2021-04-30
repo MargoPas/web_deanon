@@ -30,7 +30,7 @@ export class VoteService {
   async users_with_votes() {
     try {
       return await this.VotesRepository.query(
-        'SELECT "people_id_id", Count("stars"), P."photo", P."description", P."first__name", P."last__name", P."middle__name" FROM "votes", "people" P WHERE P."id" = "people_id_id" GROUP BY "people_id_id", P."photo", P."description", P."first__name", P."last__name", P."middle__name"',
+        'SELECT "people_id_id", Count("stars")::int, P."photo", P."description", P."first__name", P."last__name", P."middle__name" FROM "votes", "people" P WHERE P."id" = "people_id_id" GROUP BY "people_id_id", P."photo", P."description", P."first__name", P."last__name", P."middle__name" ORDER BY "count" DESC LIMIT 3',
       );
     } catch (e) {
       console.log(e);
