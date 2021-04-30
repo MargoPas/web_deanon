@@ -25,9 +25,12 @@
   transform: rotate(-5deg);
   background-color: white;
 }
-
 #framy:hover {
-  box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.6);
+}
+#framy:not(:hover) {
+  transition: 0.3s;
 }
 .frame {
   margin-bottom: 30px;
@@ -44,4 +47,9 @@
 .typography {
   font-family: "Libre Baskerville", serif;
   font-size: large;
+}
+.icon {
+  position: relative;
+  left: 0;
+  bottom: 0;
 }

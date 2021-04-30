@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {Avatar} from "@material-ui/core";
 import s from "./OneSlave.module.scss"
+import {pink} from "@material-ui/core/colors";
+import EmojiNatureIcon from "@material-ui/icons/EmojiNature";
 export interface IProps {
   First_Name: string;
   Middle_Name: string;
@@ -49,7 +51,6 @@ const OneSlave: React.FC<IProps> = (props) => {
         </CardContent>
         </div>
       </div>
-
   );
 }
 
