@@ -5,7 +5,6 @@ interface CssExports {
   'appbarLink': string;
   'grid': string;
   'in': string;
-  'logo': string;
   'out': string;
   'root': string;
   'text': string;

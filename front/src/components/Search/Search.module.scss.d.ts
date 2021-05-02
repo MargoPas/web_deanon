@@ -8,8 +8,11 @@ interface CssExports {
   'img': string;
   'input': string;
   'left': string;
+  'link': string;
   'mainy': string;
   'p': string;
+  'p_1': string;
+  'p_2': string;
   'right': string;
   'root': string;
   'textarea': string;

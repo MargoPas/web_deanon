@@ -15,13 +15,9 @@ import {fetchData} from "../../utils/API";
 import Routes, {RoutesNames} from "../../pages/routes";
 
 const useStyles = makeStyles((theme) => ({
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(1),
-    },
     submit: {
         marginRight: 30,
-        marginLeft: 25,
+        marginLeft: 22,
         marginTop: 30,
         width: '90%',
         alignItems: 'center',
@@ -31,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: red[500],
+            main: '#d9822b',
         },
         secondary: {
             main: purple[500],
@@ -128,10 +124,10 @@ const SearchForm: React.FC  = () => {
                                 findPerson(First_Name, Middle_Name, Last_Name);
                             }}
                     /></div>
-                    {!voted ? <p className={s.p}>Also: wanna<Link to={Routes.VOTE}>
+                    {!voted ? <p className={s.p_2}>Also: wanna<Link className={s.link} to={Routes.VOTE}>
                         vote
                     </Link>?</p> :
-                    <p className={s.p}>XOXO</p>}
+                    <p className={s.p_1}>XOXO</p>}
                 </div>
                 <div className={s.right}>
                     <p className={s.p}>Enter full name here</p>

@@ -1,13 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as React from 'react';
 import Routes, { RoutesNames } from '../../pages/routes';
-
-
 import s from './NavBar.module.scss';
-
-interface IProps {
-  name: string;
-}
 
 const NavBar: React.FC = () => {
   return (
