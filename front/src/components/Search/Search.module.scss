@@ -40,10 +40,24 @@
   height: 500px;
   box-sizing: border-box;
 }
+.p_2,
+.p_1,
 .p {
   font-size: 70px;
   color: white;
   font-family: "Girassol", cursive;
+}
+.p_1 {
+  position: relative;
+  left: 77px;
+  text-align: center;
+  width: 400px;
+}
+.p_2 {
+  width: 550px;
+}
+.link {
+  color: #d9822b;
 }
 .textarea {
   resize: vertical;
