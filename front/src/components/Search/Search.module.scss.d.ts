@@ -6,7 +6,6 @@ interface CssExports {
   'icon2': string;
   'icon3': string;
   'img': string;
-  'input': string;
   'left': string;
   'link': string;
   'mainy': string;
@@ -15,7 +14,6 @@ interface CssExports {
   'p_2': string;
   'right': string;
   'root': string;
-  'textarea': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

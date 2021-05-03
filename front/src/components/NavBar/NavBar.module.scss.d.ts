@@ -7,7 +7,6 @@ interface CssExports {
   'in': string;
   'out': string;
   'root': string;
-  'text': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

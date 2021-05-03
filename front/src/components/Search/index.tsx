@@ -5,14 +5,14 @@ import {changeFirst, changeLast, changeMiddle, clearState} from './@slice';
 import {useEffect} from "react";
 import {Link, useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
-import {Box, makeStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {Button, Icon} from '@blueprintjs/core'
-import {purple, red} from "@material-ui/core/colors";
+import {purple} from "@material-ui/core/colors";
 import { ThemeProvider } from "@material-ui/styles";
 import {createMuiTheme} from '@material-ui/core/styles';
 import {useState} from "react";
 import {fetchData} from "../../utils/API";
-import Routes, {RoutesNames} from "../../pages/routes";
+import Routes from "../../pages/routes";
 
 const useStyles = makeStyles((theme) => ({
     submit: {

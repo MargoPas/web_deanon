@@ -38,7 +38,6 @@ const Vote: React.FC<IProps> = (props) => {
     let isAuth = useAppSelector(state => state.voteForm.isAuth);
     const classes = useStyles();
 
-
     useEffect(()=> {
         if(haveVoted) {
             dispatch(clearState());
