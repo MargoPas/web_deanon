@@ -73,10 +73,10 @@ const SearchForm: React.FC  = () => {
     return (
         <div className={s.root}>
             <div className={s.icon}>
-                <Icon icon={'star-empty'} intent={'warning'} iconSize={60}/>
+                <Icon icon={'moon'} intent={'warning'} iconSize={60}/>
             </div>
             <div className={s.icon3}>
-                <Icon icon={'star'} intent={'warning'} iconSize={40}/>
+                <Icon icon={'clean'} intent={'warning'} iconSize={70}/>
             </div>
             <div id={s.mainy}>
                 <div className={s.left}>
@@ -131,12 +131,11 @@ const SearchForm: React.FC  = () => {
                 </div>
                 <div className={s.right}>
                     <p className={s.p}>Enter full name here</p>
-
                     <img className={s.img} src={'arrow.png'} alt={'arrow image'}/>
                 </div>
             </div>
             <div className={s.icon2}>
-                <Icon icon={'star-empty'} intent={'warning'} iconSize={60}/>
+                <Icon icon={'clean'} intent={'warning'} iconSize={60}/>
             </div>
         </div>
     )

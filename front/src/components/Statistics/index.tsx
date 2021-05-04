@@ -59,7 +59,8 @@ const MyBar: React.FC = () => {
     },[bastards]);
     // @ts-ignore
     return (
-        <div className={s.rooot}><div className={s.root}>
+        <div className={s.rooot}>
+            <div className={s.root}>
             <h1 className={s.h1}>Statistics of votes :*</h1>
             <div className={s.chart}>
                 <ResponsiveBar

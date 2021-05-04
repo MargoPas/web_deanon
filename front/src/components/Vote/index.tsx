@@ -51,7 +51,6 @@ const Vote: React.FC<IProps> = (props) => {
             <h2 className={s.h2}>Here you go! Vote for worst of the worst ^*^</h2>
             <h2 className={s.h2_1}>U have only 1 chance ;)</h2>
             <div className={s.cards}>
-
                 {props.slavesList.map(
                     (slaves) =>
                         <label className={s.hat}>
