@@ -68,7 +68,7 @@ const RootBar: React.FC = () => {
                         Так что можете чувствовать себя свободными пользоваться возможностями, (пока не) предоставляемыми этим местом.
                         Регистрируйтесь и вперёд с нами навстречу бесполезным разоблачениям и горьким реалиям нашей российкой жизни!
                     </p>
-                    {isAuth ? <Link to={Routes.UNMASK}>
+                    {isAuth ? <Link className={s.link} to={Routes.UNMASK}>
                         {RoutesNames.UNMASK}
                     </Link>:<p>Sign in to unmask!</p>}
                 </div>

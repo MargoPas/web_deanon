@@ -80,6 +80,7 @@ const config = {
         }
     },
     devServer: {
+        contentBase: path.join(__dirname, './public'),
         historyApiFallback: true,
         proxy: {
             '/api/': {

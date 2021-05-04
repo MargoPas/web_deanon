@@ -2,7 +2,10 @@
 
 .h2 {
   display: flex;
-  justify-content: center;
+  flex: 0 1 20%;
+  //justify-content: flex-start;
+  position: relative;
+  left: 0;
   color: white;
   font-family: "Dancing Script", monospace;
   font-size: 40px;
@@ -28,7 +31,7 @@
   transform: rotate(3deg);
 }
 .root {
-  width: 900px;
+  //width: 900px;                            !!!!!!!
   display: flex;
   justify-content: center;
   position: absolute;
@@ -42,13 +45,8 @@
   margin: 20px;
   justify-content: space-between;
   align-items: center;
-
 }
 .hat:hover {
-  //-webkit-transform: scale(1.2);
-  //-ms-transform: scale(1.2);
-  //transform: scale(1.2);
-  // box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
   transition: 0.5s;
   transform: translateX(-5px);
   -webkit-transform: translateX(-5px);
@@ -76,17 +74,22 @@
 .cards {
   display: flex;
   flex-direction: column;
-  width: 800px;
+  //width: 800px;                              !!!!!!!
   justify-content: center;
   position: relative;
-  left: 100px;
+  //left: 100px;                                !!!!!!!
   z-index: 0;
+
+  flex-shrink: 1;
+  //flex: 1 1 100px;   //                          !!!!!!!
+  flex-wrap: wrap;//                            !!!!!!!
 }
 .button {
   position: relative;
-  left: 150px;
+  //left: 150px;
   display: flex;
+  flex-shrink: 1;
   justify-content: center;
-  width: 200px;
+  //width: 200px;
   margin-top: 20px;
 }

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import s from './UnmaskForm.module.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { changeFirst, changeDesc, changeLast, unmaskPerson, clearState, changeIsAuth, changeMiddle } from './@slice';
+import { changeFirst, changeDesc, changeLast, unmaskPerson, clearState, changeMiddle } from './@slice';
 import {useEffect} from "react";
 import {useHistory} from 'react-router-dom'
 import TextField from '@material-ui/core/TextField'
-import {Box, makeStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {Button, Icon} from '@blueprintjs/core'
 import {purple, red} from "@material-ui/core/colors";
 import { ThemeProvider } from "@material-ui/styles";
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: red[500],
+            main: '#db3737',
         },
         secondary: {
             main: purple[500],
@@ -140,8 +140,5 @@ const UnmaskForm: React.FC  = () => {
         </div>
     )
 }
-
-//() => {
-//    dispatch(unmaskPerson({First_Name, Middle_Name, Last_Name, Description, Photo}))
 
 export default UnmaskForm;

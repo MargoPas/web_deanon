@@ -4,6 +4,7 @@ interface CssExports {
   'about': string;
   'aboutUs': string;
   'icons': string;
+  'link': string;
   'mainy': string;
 }
 export const cssExports: CssExports;
