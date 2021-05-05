@@ -21,9 +21,12 @@ export const rootSlice = createSlice({
         clearState: (state) => {
             state.isAuth = false;
         },
+        makeIsAuthFalse: (state) => {
+            state.isAuth = false;
+        }
     }
 })
 
-export const { clearState, changeIsAuth} = rootSlice.actions;
+export const { clearState, changeIsAuth, makeIsAuthFalse} = rootSlice.actions;
 
 export default rootSlice.reducer
