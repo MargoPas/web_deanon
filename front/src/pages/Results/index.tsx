@@ -2,20 +2,28 @@ import * as React from 'react';
 import NavBar from "../../components/NavBar";
 import {useEffect, useState} from "react";
 import SlavesList from "../../components/SlavesList";
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, useLocation } from 'react-router-dom';
 interface IProps {
     First_Name: string,
     Middle_Name: string,
     Last_Name: string
 }
 
-export const ResultsPage: React.FC<RouteComponentProps<IProps>> = (props) => {
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
+
+export const ResultsPage: React.FC = () => {
+    //console.log(props.location);
+
+    let query = useQuery();
+
     const [bastards, setBastards] = useState([]);
     useEffect(() => {
         fetch('/api/uploading_people/find_people', {
             method: 'POST',
-            body: JSON.stringify({ First_Name: props.match.params.First_Name,
-                Middle_Name: props.match.params.Middle_Name, Last_Name: props.match.params.Last_Name}),
+            body: JSON.stringify({ First_Name: query.get('first'),
+                Middle_Name: query.get('middle'), Last_Name: query.get('last')}),
             headers: {
                 'Content-Type': 'application/json',
             },

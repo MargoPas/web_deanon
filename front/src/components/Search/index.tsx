@@ -64,7 +64,7 @@ const SearchForm: React.FC  = () => {
     }
 
     function findPerson(first: string, middle: string, last: string) {
-        history.push(`/bastards/${first}/${middle}/${last}`);
+        history.push(`/bastards?first=${first}&middle=${middle}&last=${last}`);
         dispatch(clearState());
     }
 
