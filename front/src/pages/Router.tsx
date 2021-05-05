@@ -20,7 +20,7 @@ export const Router: React.FC = (props) => {
           <Route exact path={Routes.LOGIN} component={Login}/>
           <Route exact path={Routes.REGISTER} component={Register}/>
           <Route exact path={Routes.UNMASK} component={Unmask}/>
-          <Route path={`/bastards/:First_Name/:Middle_Name/:Last_Name`} component={ResultsPage}/>
+          <Route path={`/bastards`} component={ResultsPage}/>
           <Route exact path={Routes.SEARCH} component={Search}/>
           <Route exact path={Routes.VOTE} component={VotePage}/>
           <Route exact path={'/stat'} component={Stat}/>
