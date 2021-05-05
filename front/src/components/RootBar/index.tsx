@@ -46,7 +46,9 @@ const RootBar: React.FC = () => {
         })
             .then(response => {
                 if (response.ok) {
-                    dispatch(changeIsAuth())
+                    if(isAuth == false) {
+                        dispatch(changeIsAuth())
+                    }
                 }
                 console.log(response.ok)
                 return response.json();
