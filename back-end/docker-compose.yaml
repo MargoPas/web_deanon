@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.0'
 
 services:
 
@@ -7,7 +7,11 @@ services:
     build: ./docker/postgres
     image: sample-postgres
     ports:
-    - "127.0.0.1:5432:5432"
+    - "5432:5432"
+    networks:
+      dev:
+        aliases:
+          - fucking_shit
     env_file:
       - .env
     volumes:
@@ -15,6 +19,7 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/
     restart: always
+
 
   sample-nodejs:
     container_name: sample-nodejs
@@ -25,6 +30,10 @@ services:
     ports:
       - 8090:${PORT}
       - 5555:5555
+    networks:
+      dev:
+        aliases:
+          - fucking_shit_two
     env_file:
       - .env
     depends_on:
@@ -32,7 +41,21 @@ services:
     command: yarn prod
     restart: always
 
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/ssl/:/etc/ssl
+      - ./nginx:/etc/nginx/conf.d
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - sample-nodejs
+      - sample-postgres
+
 networks:
-  default:
+  dev:
     external:
-      name: sample
+      name: dev
+
