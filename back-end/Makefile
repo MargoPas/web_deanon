@@ -11,4 +11,4 @@ prod:
 	mkdir -p ./docker-data
 	docker-compose up
 prod-migration:
-	docker-compose exec sample-nodejs yarn migration:run
+	docker-compose exec deanon-nodejs yarn migration:run

@@ -7,7 +7,7 @@ services:
     build: ./docker/postgres
     image: sample-postgres
     ports:
-    - "5432:5432"
+    - "127.0.0.1:5432:5432"
     networks:
       dev:
         aliases:
@@ -21,14 +21,14 @@ services:
     restart: always
 
 
-  sample-nodejs:
-    container_name: sample-nodejs
+  deanon-nodejs:
+    container_name: deanon-nodejs
     build: ./docker/nodejs
-    image: sample-nodejs
+    image: deanon-nodejs
     volumes:
       - .:/app
     ports:
-      - 8090:${PORT}
+      - 8090:3000
       - 5555:5555
     networks:
       dev:
@@ -51,8 +51,12 @@ services:
       - ./nginx:/etc/nginx/conf.d
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     depends_on:
-      - sample-nodejs
+      - deanon-nodejs
       - sample-postgres
+    networks:
+      dev:
+        aliases:
+          - fucking_shit_three
 
 networks:
   dev:
