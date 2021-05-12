@@ -40,7 +40,7 @@ const OneSlave: React.FC<IProps> = (props) => {
         <div className={s.frame}>
         <div className={s.hat}>
           <p className={s.head}>{First_Name + ' ' + Middle_Name + ' ' + Last_Name}</p>
-          <Avatar className={classes.icon} src={'http://' + props.Photo} alt={'тут должно быть фото'}/>
+          <Avatar className={classes.icon} src={'/api/uploading_people/photo/' + props.Photo} alt={'тут должно быть фото'}/>
         </div>
         <CardContent>
           <Typography paragraph={true}>

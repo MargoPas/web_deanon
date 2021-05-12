@@ -123,7 +123,7 @@ const MyBar: React.FC = () => {
             <div className={s.icons}>
                 {bastards.map(
                     (slaves: Photos) =>
-                        <Avatar className={classes.icon} src={'http://' + slaves.photo} alt={'тут должно быть фото'}/>
+                        <Avatar className={classes.icon} src={'/api/uploading_people/photo/' + slaves.photo} alt={'тут должно быть фото'}/>
                 )}
             </div>
         </div>
