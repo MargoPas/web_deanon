@@ -11,7 +11,7 @@ export class FileService {
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }
-      return 'localhost:3000/' + FileName;
+      return FileName;
     } catch (e) {
       throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

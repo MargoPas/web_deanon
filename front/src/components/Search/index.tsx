@@ -13,7 +13,7 @@ import {createMuiTheme} from '@material-ui/core/styles';
 import {useState} from "react";
 import {fetchData} from "../../utils/API";
 import Routes from "../../pages/routes";
-
+import logo from '../../../public/arrow.png';
 const useStyles = makeStyles((theme) => ({
     submit: {
         marginRight: 30,
@@ -131,7 +131,7 @@ const SearchForm: React.FC  = () => {
                 </div>
                 <div className={s.right}>
                     <p className={s.p}>Enter full name here</p>
-                    <img className={s.img} src={'arrow.png'} alt={'arrow image'}/>
+                    <img className={s.img} src={logo} alt={'arrow image'}/>
                 </div>
             </div>
             <div className={s.icon2}>

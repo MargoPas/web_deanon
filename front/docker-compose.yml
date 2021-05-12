@@ -5,8 +5,8 @@ services:
     container_name: front-regina
     image: nginx:1.19.9-alpine
     volumes:
-      - ./dist:/var/web-deanon/dist
-      - ./docker/nginx:/etc/nginx/conf.d
+      - ./dist:/var/web_deanon/dist
+      - ./Docker/nginx:/etc/nginx/conf.d
     restart: always
 
 networks:

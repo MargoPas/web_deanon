@@ -9,6 +9,6 @@ dev-server:
 
 prod:
 	mkdir -p ./docker-data
-	docker-compose up
+	docker-compose up -d
 prod-migration:
 	docker-compose exec deanon-nodejs yarn migration:run

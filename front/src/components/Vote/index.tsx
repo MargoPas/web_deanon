@@ -9,7 +9,6 @@ import {useHistory} from "react-router-dom";
 import {Button} from "@blueprintjs/core";
 import {setVote, changeIsAuth, voteForPerson} from "./@slice";
 
-
 const useStyles = makeStyles((theme) => ({
     icon: {
         width: theme.spacing(20),
@@ -58,7 +57,7 @@ const Vote: React.FC<IProps> = (props) => {
                             <p className={s.title}>
                                 {slaves.First_Name + ' ' + slaves.Middle_Name + ' ' + slaves.Last_Name}
                             </p>
-                            <Avatar className={classes.icon} src={'http://' + slaves.Photo} alt={'тут должно быть фото'}/>
+                            <Avatar className={classes.icon} src={'http://api/uploading_people/photo/' + slaves.Photo} alt={'тут должно быть фото'}/>
                         </label>
                 )}
                 <div className={s.button}>
