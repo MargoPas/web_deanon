@@ -6,7 +6,7 @@ import { CreatePeopleDto } from './dto/create-people.dto';
 import { FindPeopleDto } from './dto/find-people.dto';
 import { FileService } from '../file/file.service';
 import { Users } from '../users/entities/users.entity';
-import {DeletePeopleDto} from "./dto/delete-people.dto";
+import { DeletePeopleDto } from './dto/delete-people.dto';
 
 @Injectable()
 export class PeopleService {
@@ -20,7 +20,7 @@ export class PeopleService {
     if (file != undefined) {
       photo_url = await FileService.createFile(file);
     } else {
-      photo_url = null;
+      photo_url = 'unknown_user.jpg';
     }
     const peopledto = {
       ...CreatePeopleDto,
@@ -44,7 +44,7 @@ export class PeopleService {
 
   async delete_people(user: Users, deletePeopleDto: DeletePeopleDto) {
     try {
-      if (user.login=='admin') {
+      if (user.role == 'admin') {
         return await this.PeopleRepository.delete(deletePeopleDto);
       } else {
         return { message: 'permission denied' };
@@ -55,7 +55,6 @@ export class PeopleService {
   }
 
   is_admin(user: Users) {
-    return user.login === 'admin';
+    return user.role === 'admin';
   }
 }
-

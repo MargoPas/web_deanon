@@ -23,7 +23,6 @@ export class VoteController {
       await this.voteService.create_vote(dto);
       return { message: 'ok' };
     } catch (e) {
-      console.log(e);
       return e;
     }
   }

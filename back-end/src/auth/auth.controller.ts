@@ -28,7 +28,6 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ) {
     const answer = await this.authService.register(registrationDto);
-    console.log(answer, 'answer');
     if (answer != undefined && answer != false) {
       const cookie = await this.authService.getCookieWithJwtToken(
         registrationDto.login,

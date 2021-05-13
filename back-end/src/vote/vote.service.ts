@@ -15,7 +15,6 @@ export class VoteService {
 
   async create_vote(createVoteDto: CreateVoteDto) {
     try {
-      console.log(createVoteDto);
       const vote = await this.VotesRepository.create(createVoteDto);
       await this.VotesRepository.save(vote);
     } catch (e) {
@@ -33,7 +32,6 @@ export class VoteService {
         'SELECT "people_id_id", Count("stars")::int, P."photo", P."description", P."first__name", P."last__name", P."middle__name" FROM "votes", "people" P WHERE P."id" = "people_id_id" GROUP BY "people_id_id", P."photo", P."description", P."first__name", P."last__name", P."middle__name" ORDER BY "count" DESC LIMIT 3',
       );
     } catch (e) {
-      console.log(e);
       return e;
     }
   }
