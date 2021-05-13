@@ -7,6 +7,7 @@ import rootReducer from './components/RootBar/@slice';
 import unmaskFormReducer from "./components/UnmaskForm/@slice";
 import searchFormReducer from "./components/Search/@slice";
 import voteFormReducer from "./components/Vote/@slice";
+import deleteFormReducer from './components/Delete/@slice';
 
 export const history = createBrowserHistory();
 
@@ -20,6 +21,7 @@ const reducer = {
   unmaskForm: unmaskFormReducer,
   searchForm: searchFormReducer,
   voteForm: voteFormReducer,
+  deleteForm: deleteFormReducer,
 }
 
 export const store = configureStore({

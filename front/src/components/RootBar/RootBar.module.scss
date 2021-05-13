@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
 #mainy{
   display: flex;
   left: 100px;
@@ -14,7 +15,8 @@
   transition: 0.3s;
 }
 .link {
-  text-decoration: none;
+  color: #e57373;
+  text-decoration: underline;
 }
 .about{
   text-align: justify;
@@ -45,12 +47,26 @@
 }
 
 
-.aboutUs h2{
-  font-family: monospace;
+.aboutUs .p{
+  font-family: "Girassol", monospace;
+  font-size: 30px;
   color: white;
   position: fixed;
   bottom: 280px;
   right: 220px;
   display: flex;
   flex-direction: column;
+}
+
+.admin {
+  display: flex;
+  position: fixed;
+  bottom: 350px;
+  right: 200px;
+  font-family: "Girassol", cursive;
+  font-size: 40px;
+}
+a {
+  text-decoration: underline;
+  color: white;
 }

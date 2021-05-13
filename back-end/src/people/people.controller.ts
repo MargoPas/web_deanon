@@ -20,6 +20,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { extname } from 'path';
 import { of } from 'rxjs';
+import { DeletePeopleDto } from './dto/delete-people.dto'
 
 @Controller('api/uploading_people')
 export class PeopleController {
@@ -34,7 +35,6 @@ export class PeopleController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
-      console.log(request.user);
       const user_id = request.user.id;
       if (file != undefined) {
         await this.PeopleService.create(
@@ -71,4 +71,35 @@ export class PeopleController {
   async all_people() {
     return this.PeopleService.return_all();
   }
+
+  @UseGuards(JwtAuthenticationGuard)
+  @Post('delete_people')
+  async delete(
+      @Body() deletePeopleDto: DeletePeopleDto,
+      @Req() request: RequestWithUser,
+  ) {
+    try {
+      console.log(request.user)
+      return await this.PeopleService.delete_people(
+          request.user,
+          deletePeopleDto
+      );
+    } catch (e) {
+      return e;
+    }
+  }
+
+  @UseGuards(JwtAuthenticationGuard)
+  @Get('admin')
+  async is_admin(@Req() request: RequestWithUser) {
+    try {
+      return await this.PeopleService.is_admin(request.user)
+    }
+    catch (e) {
+      console.log(e);
+      return e;
+    }
+  }
 }
+
+

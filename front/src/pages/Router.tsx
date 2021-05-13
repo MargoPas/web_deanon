@@ -10,8 +10,9 @@ import {ResultsPage} from "./Results";
 import {Search} from "./Search";
 import {VotePage} from "./VotePage";
 import {Stat} from "./Statistics";
+import {DeletePage} from "./Delete";
 
-export const Router: React.FC = (props) => {
+export const Router: React.FC = () => {
   return(
     <BrowserRouter>
       <React.Suspense fallback={<div/>}>
@@ -24,6 +25,7 @@ export const Router: React.FC = (props) => {
           <Route exact path={Routes.SEARCH} component={Search}/>
           <Route exact path={Routes.VOTE} component={VotePage}/>
           <Route exact path={'/stat'} component={Stat}/>
+          <Route exact path={'/delete'} component={DeletePage}/>
         </Switch>
       </React.Suspense>
     </BrowserRouter>
