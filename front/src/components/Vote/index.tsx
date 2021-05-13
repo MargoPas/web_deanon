@@ -1,13 +1,12 @@
 import React, {useEffect} from "react";
 import s from "../Vote/Vote.module.scss";
-import {Avatar, FormControl, FormControlLabel, Radio, RadioGroup} from "@material-ui/core";
-
+import {Avatar} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {clearState} from "../Login/@slice";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {useHistory} from "react-router-dom";
 import {Button} from "@blueprintjs/core";
-import {setVote, changeIsAuth, voteForPerson} from "./@slice";
+import {setVote, voteForPerson} from "./@slice";
 
 const useStyles = makeStyles((theme) => ({
     icon: {
@@ -34,7 +33,6 @@ const Vote: React.FC<IProps> = (props) => {
     const history = useHistory();
     const people_id = useAppSelector(state => state.voteForm.people_id);
     let haveVoted = useAppSelector(state => state.voteForm.haveVoted);
-    let isAuth = useAppSelector(state => state.voteForm.isAuth);
     const classes = useStyles();
 
     useEffect(()=> {

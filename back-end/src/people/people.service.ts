@@ -44,7 +44,7 @@ export class PeopleService {
 
   async delete_people(user: Users, deletePeopleDto: DeletePeopleDto) {
     try {
-      if (user.role == 'admin') {
+      if (user.login=='admin') {
         return await this.PeopleRepository.delete(deletePeopleDto);
       } else {
         return { message: 'permission denied' };
@@ -55,10 +55,7 @@ export class PeopleService {
   }
 
   is_admin(user: Users) {
-    if (user.role === 'admin') {
-      return true;
-    } else {
-      return false;
-    }
+    return user.login === 'admin';
   }
 }
+

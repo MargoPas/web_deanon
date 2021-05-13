@@ -1,9 +1,8 @@
 import s from './RootBar.module.scss'
 import * as React from 'react';
-import {Avatar, makeStyles, Typography} from "@material-ui/core";
-import {deepOrange, deepPurple} from "@material-ui/core/colors";
+import {Avatar, Button, makeStyles, Typography} from "@material-ui/core";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {changeIsAuth} from "./@slice";
+import {changeIsAuth, makeIsAdminFalse, makeIsAdminTrue} from "./@slice";
 import Routes, {RoutesNames} from "../../pages/routes";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
@@ -32,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const RootBar: React.FC = () => {
     const classes = useStyles();
     let isAuth = useAppSelector(state => state.rootState.isAuth);
+    let isAdmin = useAppSelector(state => state.rootState.isAdmin);
     const dispatch = useAppDispatch();
     function GetIsAuth() {
         fetchData('/api/cookie', {
@@ -57,7 +57,32 @@ const RootBar: React.FC = () => {
                 console.log(data);
             });
     }
-    useEffect(()=>{GetIsAuth();}, [isAuth]);
+    function GetIsAdmin() {
+        fetchData('/api/uploading_people/admin', {
+            credentials: "include",
+            method: 'GET',
+        })
+            .then(response => {
+                console.log(response.ok)
+                if(response.ok) {
+                    return response.json()
+                }
+                else {
+                    return false;
+                }
+            })
+            .then(data => {
+                if(data) {
+                    if(!isAdmin) {dispatch(makeIsAdminTrue());}
+                }
+                else {
+                    if(isAdmin) {
+                        dispatch(makeIsAdminFalse());
+                    }
+                }
+            });
+    }
+    useEffect(()=>{GetIsAuth(); GetIsAdmin();}, [isAuth, isAdmin]);
     return (
         <div className={'root'}>
             <div id={s.mainy}>
@@ -75,8 +100,10 @@ const RootBar: React.FC = () => {
                     </Link>:<p>Sign in to unmask!</p>}
                 </div>
             </div>
+            {isAdmin ? <Link className={s.admin} to={'/delete'}>delete from db</Link> :
+            <p> </p>}
             <div className={s.aboutUs}>
-                <h2>При участии:</h2>
+                <p className={s.p}>Created by:</p>
                 <div className={s.icons}>
                     <Avatar className={classes.orange}>PR</Avatar>
                     <Avatar className={classes.purple}>BR</Avatar>

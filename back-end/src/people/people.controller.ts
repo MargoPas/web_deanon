@@ -20,7 +20,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 import { extname } from 'path';
 import { of } from 'rxjs';
+
 import { DeletePeopleDto } from './dto/delete-people.dto';
+
 
 @Controller('api/uploading_people')
 export class PeopleController {
@@ -101,3 +103,5 @@ export class PeopleController {
      }
   }
 }
+
+

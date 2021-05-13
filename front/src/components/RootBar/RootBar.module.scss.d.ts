@@ -3,9 +3,11 @@
 interface CssExports {
   'about': string;
   'aboutUs': string;
+  'admin': string;
   'icons': string;
   'link': string;
   'mainy': string;
+  'p': string;
 }
 export const cssExports: CssExports;
 export default cssExports;

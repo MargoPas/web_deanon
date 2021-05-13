@@ -4,10 +4,12 @@ import { fetchData } from '../../utils/API'
 
 export interface RootState {
     isAuth: boolean;
+    isAdmin: boolean;
 }
 // Define the initial state using that type
 const initialState: RootState = {
     isAuth: false,
+    isAdmin: false,
 }
 
 export const rootSlice = createSlice({
@@ -23,10 +25,16 @@ export const rootSlice = createSlice({
         },
         makeIsAuthFalse: (state) => {
             state.isAuth = false;
+        },
+        makeIsAdminTrue: (state) => {
+            state.isAdmin = true;
+        },
+        makeIsAdminFalse: (state) => {
+            state.isAdmin = false;
         }
     }
 })
 
-export const { clearState, changeIsAuth, makeIsAuthFalse} = rootSlice.actions;
+export const { clearState, changeIsAuth, makeIsAuthFalse, makeIsAdminFalse, makeIsAdminTrue} = rootSlice.actions;
 
 export default rootSlice.reducer
