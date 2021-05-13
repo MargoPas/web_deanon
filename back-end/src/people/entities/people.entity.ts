@@ -28,7 +28,7 @@ export class People {
   @Column()
   Description: string;
 
-  @Column()
+  @Column(null)
   Photo: string;
 
   @ManyToOne(() => Users, (users) => users.id)

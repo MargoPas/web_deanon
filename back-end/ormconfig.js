@@ -2,7 +2,7 @@ const { SnakeNamingStrategy } = require('typeorm-naming-strategies');
 
 module.exports = {
   type: 'postgres',
-  host: 'fucking_shit',
+  host: '127.0.0.1',//'fucking_shit',
   port: process.env.POSTGRES_PORT,
   username: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
