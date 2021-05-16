@@ -39,17 +39,12 @@ export class PeopleController {
     try {
       const user_id = request.user.id;
       if (file != undefined) {
-        await this.PeopleService.create(
-          createPeopleDto,
-          user_id,
-          file.filename,
-        );
+        await this.PeopleService.create(createPeopleDto, user_id, file.filename,);
       } else {
-        await this.PeopleService.create(createPeopleDto, user_id, null);
+        await this.PeopleService.create(createPeopleDto, request.user.id, null);
       }
       return { message: 'ok' };
     } catch (e) {
-      console.log(e);
       return e;
     }
   }
@@ -81,11 +76,7 @@ export class PeopleController {
     @Req() request: RequestWithUser,
   ) {
     try {
-      console.log(request.user)
-      return await this.PeopleService.delete_people(
-        request.user,
-        deletePeopleDto,
-      );
+      return await this.PeopleService.delete_people(request.user, deletePeopleDto,);
     } catch (e) {
       return e;
     }

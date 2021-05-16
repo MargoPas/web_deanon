@@ -49,7 +49,6 @@ export class AuthController {
     if (user != undefined) {
       const login = user.login;
       const cookie = await this.authService.getCookieWithJwtToken(login);
-
       response.setHeader('Set-Cookie', cookie);
       return { message: 'success', data: user };
     } else {
